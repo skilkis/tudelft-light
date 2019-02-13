@@ -1,0 +1,24 @@
+%\\\\\\\\\\\Definining MATLAB Appendix Colors\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    
+\definecolor{mygreen}{RGB}{28,172,0}
+\definecolor{mylilas}{RGB}{170,55,241}
+\definecolor{mygrey}{RGB}{125,125,125}
+\definecolor{myBG}{RGB}{252,252,220}
+    
+\lstset{language=Matlab,%
+    %basicstyle=\color{red},
+    breaklines=true,%
+    backgroundcolor = \color{myBG},
+    morekeywords={matlab2tikz},
+    keywordstyle=\color{blue},%
+    morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+    basicstyle=\ttfamily\scriptsize,
+    identifierstyle=\color{black}\ttfamily,%
+    stringstyle=\color{mylilas}\ttfamily,
+    commentstyle=\color{mygreen}\ttfamily,%
+    showstringspaces=false,%without this there will be a symbol in the places where there is a space
+    numbers=right,%
+    numberstyle={\tiny \color{mygrey}},% size of the numbers
+    numbersep=9pt, % this defines how far the numbers are from the text
+    emph=[1]{NoZ1,NoZ2},emphstyle=[1]\color{cyan}, %Put Global Variables in Here!
+}

@@ -1,0 +1,137 @@
+\chapter{Example \LaTeX\ Elements}
+\pagenumbering{arabic} %DO NOT REMOVE FROM THE INTRODUCTION CHAPTER
+
+This template has been developed for the [AE3200] Design Synthesis Exercise. \texttt{THIS TEMPLATE CANNOT BE USED WITHOUT EXPRESSED PERMISSION FROM:} \c{S}an K{\i}lk{\i}\c{s} and Munyung Kim
+
+\section{Tables \& Figures}
+An example \cref{tab:exampletable} and an example \cref{fig:flame} can be found in this section. When you label tables or figures, make sure to use `tab:name' or `fig:name', this is not necessary for syntax but makes organization and look-up of labels easier. For inserting 2+ figures in a row, look at the formatting of Figure \cref{fig:sbs}. Using the \texttt{cleveref} package negates the need for manually typing `Table' or `Figure'. The syntax is as follows, note that the `tab' in `tab:exampletable' is not necessary for \texttt{cref} and is purely for organizational reasons. However a `,' cannot be utilized as this is interpreted as a list.
+
+\begin{verbatim}
+    \cref{tab:exampletable}
+\end{verbatim}
+
+The Tables below use the package \texttt{tabularx} which adjusts column spacing automatically to fit the table within the margins of the page. The syntax is as follows where 'L' is for Left Aligned, 'C' for Centered, and 'R' is for Right Aligned:
+
+\begin{verbatim}
+    \begin{tabularx}{\textwidth}{L C C C}
+\end{verbatim}
+
+In order to keep up the same appearance for all tables use the commands \texttt{toprule}, \texttt{midrule}, \texttt{bottomrule}, and \texttt{hdashline} to create the horizontal lines. NO VERTICAL LINES ARE ALLOWED!
+
+\begin{table}[H]
+	\centering
+	\caption{Example Table}
+	\label{tab:exampletable}
+	\begin{tabularx}{\textwidth}{L C C C} %'L' for Left Aligned, 'C' for Centered, 'R' for Right Aligned
+	    \toprule\
+		\textbf{Component}				& \textbf{Mass [$\text{kg}$]}	&\textbf{Location [$\text{m}$]} & \textbf{Location [\% MAC]}   \\ \toprule
+		Wing 							& 425.4 						& 5.74 							& 40.00\\\hdashline
+		Main Landing Gear 				& 243.1 						& 5.82 							& 45.00 \\\hdashline
+		Fuel System 					& 80.74 						& 5.91 							& 50.00 \\\hdashline
+		Flight Control System 			& 48.61 						& 6.08 							& 60.00	\\\hdashline
+		Hydraulics 						& 4.660 						& 6.08 						    & 60.00 \\\hdashline
+		\textbf{Wing Group} 			& \textbf{802.5} 				& \textbf{5.80} 				& \textbf{43.85}\\ \midrule
+		Fuselage 						& 265.2 						& 5.74 	                        & 40.00 \\\hdashline
+		Engine 							& 409.4 						& 1.64 							& - \\\hdashline
+		Avionics 						& 490.9 						& 4.39 							& - \\\hdashline
+		H. Tail 						& 42.93 						& 13.2 						    & - \\\hdashline
+		V. Tail 						& 66.43 						& 12.6 						    & - \\\hdashline
+		Nose Gear						& 54.58 						& 2.50 							& - \\\hdashline
+		Electrical 						& 217.4 						& 6.16 							& 67.12 \\\hdashline
+		AC \& Anti-Ice 					& 215.7 						& 6.16 							& 67.12 \\\hdashline
+		Furnishings 					& 241.5 						& 6.16 							& 67.12 \\\hdashline
+		\textbf{Fuselage Group} 		& \textbf{2004} 				& \textbf{5.01} 				& \textbf{-2.32} \\ \midrule
+		\textbf{OEW C.G.} 				& \textbf{2806} 				& \textbf{5.24} 				& \textbf{10.88} \\ \bottomrule
+	\end{tabularx}
+\end{table}
+
+
+\begin{table}[H]
+	\centering
+	\caption{Example Table II}
+	\label{tab:exampletableII}
+    \begin{tabularx}{\textwidth}{C C C C C C C C} %'L' for Left Aligned, 'C' for Centered, 'R' for Right Aligned
+    \toprule\
+    {$m$} & {$\Re\{\underline{\mathfrak{X}}(m)\}$} & {$-\Im\{\underline{\mathfrak{X}}(m)\}$} & {$\mathfrak{X}(m)$} & {$\frac{\mathfrak{X}(m)}{23}$} & {$A_m$} & {$\varphi(m)\ /\ ^{\circ}$} & {$\varphi_m\ /\ ^{\circ}$} \\ \toprule
+    1  & 16.128 & +8.872 & 16.128 & 1.402 & 1.373 & -146.6 & -137.6 \\ \hdashline
+    2  & 3.442  & -2.509 & 3.442  & 0.299 & 0.343 & 133.2  & 152.4  \\ \hdashline
+    3  & 1.826  & -0.363 & 1.826  & 0.159 & 0.119 & 168.5  & -161.1 \\ \hdashline
+    4  & 0.993  & -0.429 & 0.993  & 0.086 & 0.08  & 25.6   & 90     \\ \midrule
+    5  & 1.29   & +0.099 & 1.29   & 0.112 & 0.097 & -175.6 & -114.7 \\ \hdashline
+    6  & 0.483  & -0.183 & 0.483  & 0.042 & 0.063 & 22.3   & 122.5  \\ \hdashline
+    7  & 0.766  & -0.475 & 0.766  & 0.067 & 0.039 & 141.6  & -122   \\ \hdashline
+    8  & 0.624  & +0.365 & 0.624  & 0.054 & 0.04  & -35.7  & 90     \\ \midrule
+    9  & 0.641  & -0.466 & 0.641  & 0.056 & 0.045 & 133.3  & -106.3 \\ \hdashline
+    10 & 0.45   & +0.421 & 0.45   & 0.039 & 0.034 & -69.4  & 110.9  \\ \hdashline
+    11 & 0.598  & -0.597 & 0.598  & 0.052 & 0.025 & 92.3   & -109.3 \\ \bottomrule
+    \end{tabularx}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.3\textwidth]{Introduction/Figures/flame.jpg}
+    \caption{TU Delft Logo Flame}
+    \label{fig:flame}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.5\textwidth}
+  \centering
+  \includegraphics[width=.85\textwidth]{Introduction/Figures/flame.jpg}
+  \subcaption{TU Delft Logo Flame}
+  \label{fig:flame1}
+\end{subfigure}%
+\begin{subfigure}[b]{0.5\textwidth}
+  \centering
+  \includegraphics[width=.85\textwidth]{Introduction/Figures/flame.jpg}
+  \subcaption{TU Delft Logo Flame}
+  \label{fig:flame2}
+\end{subfigure}
+\caption{Two Figures Side-by-Side} %Main Caption
+\label{fig:sbs}
+\end{figure}
+
+
+\section{References \& Citations}
+The \texttt{biblatex} package is used for references with the default `numeric' style for in-text citations and references \cite{Sciacchitano2018}. The references sorting style is set to `none' meaning that the references are sorted by the order in which they appear in text. A sample file \texttt{samplerefs.bib} is included to help when dealing with different types of publications.
+
+\begin{verbatim}
+    \cite{citationtag}
+\end{verbatim}
+
+\section{Equations \& Nomenclature}
+Starting with variables, you need to use a nomenclature code when you introduce a variable for the FIRST time, such that the variable is listed on the list of symbols. An example is given below by \cref{eq:exampleeq}.
+
+\begin{equation}
+\label{eq:exampleeq}
+    L = \frac{1}{2}\rho V^2 S \cdot C_{L}
+\end{equation}
+
+\nomenclature[A]{ABCD}{Ayy Bee See Dee}
+\nomenclature[B]{$C_L$}{Lift Coefficient \nomunit{-}}
+\nomenclature[B, 01]{$V$}{Velocity \nomunit{\si{kg.m^{-1}}}}
+\nomenclature[B, 02]{$S$}{Wing Area \nomunit{\si{m^{2}}}}
+\nomenclature[G]{$\rho$}{Density of Air \nomunit{\si{kg.m^{-3}}}}
+
+The the list of symbols for the above equation were generated with the code below:
+
+\begin{verbatim}
+    \nomenclature[A]{ABCD}{Ayy Bee See Dee}
+    \nomenclature[B]{$C_L$}{Lift Coefficient \nomunit{-}}
+    \nomenclature[B, 01]{$V$}{Velocity \nomunit{\si{kg.m^{-1}}}}
+    \nomenclature[B, 02]{$S$}{Wing Area \nomunit{\si{m^{2}}}}
+    \nomenclature[G]{$\rho$}{Density of Air \nomunit{\si{kg.m^{-3}}}}
+\end{verbatim}
+
+
+\section{Units and Numbers}
+In order to maintain a coherent unit definition the \texttt{siunitx} package is used. Everytime a unit is necessary, such as when specifying \num{5} \si{\kilogram}, which is generated with the code below:
+
+\begin{verbatim}
+    \num{5} \si{\kilogram}
+\end{verbatim}
+
+
+
+

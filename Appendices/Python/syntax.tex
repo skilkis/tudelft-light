@@ -1,0 +1,41 @@
+%\\\\\\\\\\\Definining Python Appendix Colors\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    
+\definecolor{halfgray}{gray}{0.55}
+\definecolor{ipython_grey}{RGB}{128, 128, 128}
+\definecolor{ipython_frame}{RGB}{207, 207, 207}
+\definecolor{ipython_bg}{RGB}{247, 247, 247}
+\definecolor{ipython_red}{RGB}{186, 33, 33}
+\definecolor{ipython_green}{RGB}{0, 128, 0}
+\definecolor{ipython_cyan}{RGB}{64, 128, 128}
+\definecolor{ipython_purple}{RGB}{170, 34, 255}
+\definecolor{ipython_magenta}{RGB}{178, 0, 178}
+\definecolor{ipython_light_magenta}{RGB}{148, 85, 141}
+\definecolor{ipython_blue}{RGB}{0, 0, 178}
+\definecolor{ipython_dark_blue}{RGB}{0, 0, 128}
+
+\setmonofont{FreeMono}
+
+\lstset{language=Python,
+	basicstyle=\tiny\ttfamily,
+    numberstyle={\tiny \color{mygrey}},% size of the numbers
+    numbersep=9pt, % this defines how far the numbers are from the text
+    % 
+    % Special Cases:
+    emph=[1]{self}, emphstyle=[1]\color{ipython_light_magenta},
+    emph=[2]{@property, @Attribute, }, emphstyle=[2]{\color{ipython_blue}},
+    emph=[3]{__init__, __repr__}, emphstyle=[3]{\color{ipython_magenta}},
+	%
+	% Comments and Docstrings:
+    commentstyle=\color{ipython_grey}\tiny,
+    stringstyle=\color{ipython_green},
+	%
+    keepspaces=true,
+    showstringspaces=false,
+    rulecolor=\color{ipython_frame},
+    frame=single,
+    frameround={t}{t}{t}{t},
+    numberstyle=\tiny\color{halfgray},
+    backgroundcolor=\color{ipython_bg},
+    extendedchars=true,
+    keywordstyle=\color{ipython_dark_blue},
+}
