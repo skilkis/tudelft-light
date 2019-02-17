@@ -45,8 +45,8 @@
         pdfmenubar=true,        % show Acrobat’s menu?
         pdffitwindow=false,     % window fit to page when opened
         pdfstartview={FitH},    % fits the width of the page to the window
-        pdftitle={Laboratory Exercise Report: PIV and HWA Results for a NACA-0012 Airfoil},            % title
-        pdfauthor={S. Kilkis, et. al},     % author
+        pdftitle={},            % title
+        pdfauthor={},           % author
         pdfsubject={},          % subject of the document
         pdfcreator={},          % creator of the document
         pdfproducer={},         % producer of the document
