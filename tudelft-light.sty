@@ -1,19 +1,22 @@
-%\\\\\\\\\\\Document Properties\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\ProvidesPackage{tudelft-light}
 
-    \documentclass[11pt,a4paper,reqno,titlepage]{report}
+%\\\\\\\\\\\Document Preamble \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
     \usepackage[margin=6pc, headheight=14pt]{geometry}
-    \usepackage[utf8]{inputenc}
+    % \usepackage[utf8]{inputenc}
     \usepackage{xcolor} % Useful for colored tables!
     \usepackage{amsfonts}
     \usepackage{amsmath}
     \usepackage{mathtools}
     \usepackage{amssymb}
+    \usepackage[super]{nth}
     \usepackage{graphicx}
     \usepackage{tikz}
     \usepackage{pgfplots}
     \usepackage{datatool}
     \usepackage{tabularx}
     \usepackage{rotating}
+    \usepackage{pdflscape}
     \usepackage{float}
     \usepackage{booktabs}
     \usepackage{titlesec,color}
@@ -30,8 +33,9 @@
     \usepackage{listings}
     \usepackage{siunitx}
     \usepackage[titletoc]{appendix}
-    \usepackage{arydshln} % Adding dashlines in arrays \hdashline        
-    \pgfplotsset{compat=1.14} % Setting compatibility for PGF Plots
+    
+    \usepackage{arydshln} % Adding dashlines in arrays \hdashline   
+    \pgfplotsset{compat=1.16} % Setting compatibility for PGF Plots
     
     %% FOR DEBUGGING %%
     \usepackage{blindtext}
@@ -44,7 +48,7 @@
         pdftoolbar=true,        % show Acrobat’s toolbar?
         pdfmenubar=true,        % show Acrobat’s menu?
         pdffitwindow=false,     % window fit to page when opened
-        pdfstartview={FitH},    % fits the width of the page to the window
+        pdfstartview={FitH},    % fits the width/height of the page to the window
         pdftitle={},            % title
         pdfauthor={},           % author
         pdfsubject={},          % subject of the document
@@ -64,28 +68,32 @@
     
     \renewcommand{\thefootnote}{\roman{footnote}} % Footnote style Roman numerals
     \usepackage{tablefootnote}
+    
+        
+    \setlength{\parindent}{0cm} % No indent
 
 %\\\\\\\\\\\Setting-up Nomenclature Classes\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     \usepackage{nomencl}
     \makenomenclature
         
-    \usepackage{etoolbox}
+    % \usepackage{etoolbox}
     \renewcommand\nomgroup[1]{%
         \item[\bfseries
-            \ifstrequal{#1}{G}{Greek Symbols}{%
-            \ifstrequal{#1}{B}{Roman Symbols}{%
-            \ifstrequal{#1}{S}{Subscripts}{%
+            \ifthenelse{\equal{#1}{G}}{Greek Symbols}{%
+            \ifthenelse{\equal{#1}{B}}{Roman Symbols}{%
+            \ifthenelse{\equal{#1}{S}}{Subscripts}{%
+            \ifthenelse{\equal{T}{Superscripts}}{%
             %ADD MORE CLASSES HERE (Order does not matter, LaTeX will sort classes Based on !Class Reference
             %\ifstrequal{#1}{!Class Reference}{!Class Name}{%
             %\ifstrequal{#1}{!Class Reference}{!Class Name}{%
             %\ifstrequal{#1}{!Class Reference}{!Class Name}{%
-            \ifstrequal{#1}{A}{Abbreviations}{}}}}%
+            \ifthenelse{\equal{#1}{A}}{Abbreviations}{}}}}}%
         ]}
      
     % This argument will add the units
     \newcommand{\nomunit}[1]{%
-    \renewcommand{\nomentryend}{\hspace*{\fill}[#1]}}
+    \renewcommand{\nomentryend}{\hspace*{\fill}\si{#1}}}
     
     %Renames Nomenclature to List of Symbols
     \renewcommand{\nomname}{List of Symbols}
@@ -103,6 +111,7 @@
     \newcolumntype{C}{>{\small\centering\arraybackslash}X} %For tabularX
     \newcolumntype{L}{>{\small\raggedright\arraybackslash}X} %For tabularX
     \newcolumntype{R}{>{\small\raggedleft\arraybackslash}X} %For tabularX
+    \newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}} % centered p column
     
     %Changes parameters for \hdashline to make the dashes into dots:
     \setlength\dashlinedash{0.2pt}
@@ -118,11 +127,14 @@
 
 %\\\\\\\\\\\Rename Bibliography to References\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-    \usepackage[
-    backend=biber,
-    style=numeric,
-    citestyle=numeric,
-    sorting=none
-    ]{biblatex}
+    \usepackage[backend=biber,
+                style=numeric,
+                citestyle=numeric,
+                sorting=none
+                ]{biblatex}
     \addbibresource{references.bib} %Bibliography File
     \newcommand{\BibliographyName}{References} %Name of Biblography
+    
+%\\\\\\\\\\\ Command for XDSM Files \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+% \newcommand{\zero}[1]{{#1}^{\left(0\right)}}
