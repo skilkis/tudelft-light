@@ -1,4 +1,5 @@
-\input{style.cls}
+\documentclass[11pt,a4paper,reqno,titlepage]{report}
+\usepackage{tudelft-light}
 
 %Document
 \begin{document}
@@ -22,7 +23,7 @@
     \thispagestyle{empty}
     \setcounter{page}{0}
     \clearpage
-
+    
     %List of Symbols
     \printnomenclature[50pt]
     \addcontentsline{toc}{chapter}{List of Symbols}
@@ -41,14 +42,9 @@
 \begingroup
 
     %Chapters:
-%     \input{Introduction/introduction}
-%     \input{Cases/cases}
-%     \input{Argumentation/argumentation}
-%     \input{Argumentation/counterarguments}
-%     \input{Conclusion/conclusion}
     \input{example}
     %ADD CHAPTERS HERE
-    
+
     %References:
     \begingroup %Creates Separate Group from the Report
     \raggedright %Removes Justification
@@ -56,7 +52,7 @@
     \cleardoublepage
     \phantomsection
     \addcontentsline{toc}{chapter}{\BibliographyName}
-    \printbibliography[title={\BibliographyName}] %Rename Bibliography (Default) to \BiblographyName defined in style.cls
+    \printbibliography[title={\BibliographyName}] %Rename Bibliography (Default) to \BiblographyName defined in tudelft-light.sty
     \endgroup
     
     %Appendices:
