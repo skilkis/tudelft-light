@@ -1,6 +1,6 @@
-\ProvidesPackage{tudelft-light}
+\ProvidesPackage{tudelft-light/style}
 
-%\\\\\\\\\\\Document Preamble \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+%\\\\\\\\\\\ Document Preamble \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     \usepackage[margin=6pc, headheight=14pt]{geometry}
     % \usepackage[utf8]{inputenc}
@@ -41,14 +41,14 @@
     \usepackage{blindtext}
 
 
-%\\\\\\\\\\\Document Properties\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+%\\\\\\\\\\\ Document Properties \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     \usepackage[hidelinks, unicode]{hyperref}
     \hypersetup{
         pdftoolbar=true,        % show Acrobat’s toolbar?
         pdfmenubar=true,        % show Acrobat’s menu?
         pdffitwindow=false,     % window fit to page when opened
-        pdfstartview={FitH},    % fits the width/height of the page to the window
+        pdfstartview={FitH},    % fits the width/height of the page
         pdftitle={},            % title
         pdfauthor={},           % author
         pdfsubject={},          % subject of the document
@@ -57,23 +57,25 @@
         pdfkeywords={},         % list of keywords
         pdfnewwindow=true,      % links in new window
         colorlinks=true,        % false: boxed links; true: colored links
-        linkcolor=black,        % color of internal links (change box color with linkbordercolor)
+        linkcolor=black,        % color of internal links
         citecolor=cyan,         % color of links to bibliography
         filecolor=black,        % color of file links
         urlcolor=black          % color of external links
     }
 
-    \usepackage[capitalise, noabbrev, nameinlink]{cleveref} % Automatic Referencing: WARNING HAS TO BE LOADED AFTER hyperref
-    \creflabelformat{equation}{#2\textup{#1}#3} % Removes Parenthesis around Equation labels
-    
-    \renewcommand{\thefootnote}{\roman{footnote}} % Footnote style Roman numerals
+    % Automatic Referencing: WARNING HAS TO BE LOADED AFTER hyperref
+    \usepackage[capitalise, noabbrev, nameinlink]{cleveref}
+    % Removes Parenthesis around Equation labels
+    \creflabelformat{equation}{#2\textup{#1}#3}
+    % Footnote style Roman numerals
+    \renewcommand{\thefootnote}{\roman{footnote}} 
     \usepackage{tablefootnote}
     
         
     \setlength{\parindent}{0cm} % No indent
 
-%\\\\\\\\\\\Setting-up Nomenclature Classes\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
+%\\\\\\\\\\ Setting-up Nomenclature Classes \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     \usepackage{nomencl}
     \makenomenclature
         
@@ -98,14 +100,14 @@
     %Renames Nomenclature to List of Symbols
     \renewcommand{\nomname}{List of Symbols}
                
-%\\\\\\\\\\\Definining MATLAB Appendix Colors\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+%\\\\\\\\\\\ Definining MATLAB Appendix Colors \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     
     \definecolor{mygreen}{RGB}{28,172,0}
     \definecolor{mylilas}{RGB}{170,55,241}
     \definecolor{mygrey}{RGB}{125,125,125}
     \definecolor{myBG}{RGB}{252,252,220}
 
-%\\\\\\\\\\Table Spacing & Layout Parameters\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+%\\\\\\\\\\ Table Spacing & Layout Parameters\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     \renewcommand{\arraystretch}{1.2}
     \newcolumntype{C}{>{\small\centering\arraybackslash}X} %For tabularX
@@ -118,14 +120,14 @@
     \setlength\dashlinegap{1.5pt}
     \setlength\arrayrulewidth{0.3pt}
     
-%\\\\\\\\\\\Set Document Layout & Title Margins\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+%\\\\\\\\\\\ Set Document Layout & Title Margins \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     \titlespacing*{\chapter}{0pt}{-25pt}{10pt}
     \definecolor{gray75}{gray}{0}
     \newcommand{\hsp}{\hspace{3pt}}
     \titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter\hsp\textcolor{gray75}\hsp}{10pt}{\Huge\bfseries}
 
-%\\\\\\\\\\\Rename Bibliography to References\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+%\\\\\\\\\\\ Rename Bibliography to References \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     \usepackage[backend=biber,
                 style=numeric,
@@ -135,6 +137,6 @@
     \addbibresource{references.bib} %Bibliography File
     \newcommand{\BibliographyName}{References} %Name of Biblography
     
-%\\\\\\\\\\\ Command for XDSM Files \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+%\\\\\\\\\\\ Command for XDSM Files \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 % \newcommand{\zero}[1]{{#1}^{\left(0\right)}}

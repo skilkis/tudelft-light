@@ -1,13 +1,13 @@
 \documentclass[11pt,a4paper,reqno,titlepage]{report}
-\usepackage{tudelft-light}
+\usepackage{tudelft-light/style}
 
 %Document
 \begin{document}
-\includepdf[pages={1}]{Title/outercover.pdf}
+\includepdf[pages={1}]{tudelft-light/title/outercover.pdf}
 \setlength{\parindent}{0cm} % No indent
 
 %Inner Title Page
-\input{Title/innercover}
+\input{tudelft-light/title/innercover.tex}
 
 %Document Part I:
 \begingroup
@@ -46,15 +46,15 @@
     %ADD CHAPTERS HERE
 
     %References:
-    \begingroup %Creates Separate Group from the Report
-    \raggedright %Removes Justification
-    %\nocite{*} %Disables biblatex from checking if all references are cited in-text DO NOT UN-COMMENT UNLESS ERROR CHECKING!
+    \begingroup % Creates Separate Group from the Report
+    \raggedright % Removes Justification
+    %\nocite{*} % Disables biblatex from checking if all references are cited
     \cleardoublepage
     \phantomsection
     \addcontentsline{toc}{chapter}{\BibliographyName}
-    \printbibliography[title={\BibliographyName}] %Rename Bibliography (Default) to \BiblographyName defined in tudelft-light.sty
+    \printbibliography[title={\BibliographyName}] % Renames Bibliography
     \endgroup
-    
+
     %Appendices:
     \begin{appendices}
     \input{Appendices/MATLAB/MATLAB.tex}
