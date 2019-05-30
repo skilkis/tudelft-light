@@ -1,6 +1,5 @@
 \chapter{Example \LaTeX\ Elements}
 \pagenumbering{arabic} %DO NOT REMOVE FROM THE INTRODUCTION CHAPTER
-
 This template has been developed for the [AE3200] Design Synthesis Exercise. \texttt{THIS TEMPLATE CANNOT BE USED WITHOUT EXPRESSED PERMISSION FROM:} \c{S}an K{\i}lk{\i}\c{s} and Munyung Kim
 
 \section{Tables \& Figures}
@@ -94,15 +93,14 @@ In order to keep up the same appearance for all tables use the commands \texttt{
 
 
 \section{References \& Citations}
-The \texttt{biblatex} package is used for references with the default `numeric' style for in-text citations and references \cite{Sciacchitano2018}. The references sorting style is set to `none' meaning that the references are sorted by the order in which they appear in text. A sample file \texttt{samplerefs.bib} is included to help when dealing with different types of publications.
+The \texttt{biblatex} package is used for references with the default `numeric' style for in-text citations and references \cite{sampleref}. The references sorting style is set to `none' meaning that the references are sorted by the order in which they appear in text. A sample file \texttt{samplerefs.bib} is included to help when dealing with different types of publications.
 
 \begin{verbatim}
     \cite{citationtag}
 \end{verbatim}
 
 \section{Equations \& Nomenclature}
-Starting with variables, you need to use a nomenclature code when you introduce a variable for the FIRST time, such that the variable is listed on the list of symbols. An example is given below by \cref{eq:exampleeq}.
-
+When typesetting equations, you need to use a nomenclature code when you introduce a variable for the FIRST time, such that the variable is listed on the list of symbols. An example is given below by \cref{eq:exampleeq}. With the current implementation, duplicate nomenclature items are not automatically removed.
 \begin{equation}
 \label{eq:exampleeq}
     L = \frac{1}{2}\rho V^2 S \cdot C_{L}
@@ -110,26 +108,24 @@ Starting with variables, you need to use a nomenclature code when you introduce 
 
 \nomenclature[A]{ABCD}{Ayy Bee See Dee}
 \nomenclature[B]{$C_L$}{Lift Coefficient \nomunit{-}}
-\nomenclature[B, 01]{$V$}{Velocity \nomunit{\si{kg.m^{-1}}}}
-\nomenclature[B, 02]{$S$}{Wing Area \nomunit{\si{m^{2}}}}
-\nomenclature[G]{$\rho$}{Density of Air \nomunit{\si{kg.m^{-3}}}}
+\nomenclature[B, 01]{$V$}{Velocity \nomunit{kg.m^{-1}}}
+\nomenclature[B, 02]{$S$}{Wing Area \nomunit{m^{2}}}
+\nomenclature[G]{$\rho$}{Density of Air \nomunit{kg.m^{-3}}}
 
 The the list of symbols for the above equation were generated with the code below:
 
 \begin{verbatim}
     \nomenclature[A]{ABCD}{Ayy Bee See Dee}
     \nomenclature[B]{$C_L$}{Lift Coefficient \nomunit{-}}
-    \nomenclature[B, 01]{$V$}{Velocity \nomunit{\si{kg.m^{-1}}}}
-    \nomenclature[B, 02]{$S$}{Wing Area \nomunit{\si{m^{2}}}}
-    \nomenclature[G]{$\rho$}{Density of Air \nomunit{\si{kg.m^{-3}}}}
+    \nomenclature[B, 01]{$V$}{Velocity \nomunit{kg.m^{-1}}}
+    \nomenclature[B, 02]{$S$}{Wing Area \nomunit{m^{2}}}
+    \nomenclature[G]{$\rho$}{Density of Air \nomunit{kg.m^{-3}}}
 \end{verbatim}
 
 
 \section{Units and Numbers}
-In order to maintain a coherent unit definition the \texttt{siunitx} package is used. Everytime a unit is necessary, such as when specifying \num{5} \si{\kilogram}, which is generated with the code below:
-
 \begin{verbatim}
-    \num{5} \si{\kilogram}
+    \SI{5}{\kilogram}
 \end{verbatim}
 
 
