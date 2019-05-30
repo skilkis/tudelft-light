@@ -1,27 +1,43 @@
 \chapter{Example \LaTeX\ Elements}
 \pagenumbering{arabic} %DO NOT REMOVE FROM THE INTRODUCTION CHAPTER
-This template has been developed for the [AE3200] Design Synthesis Exercise. \texttt{THIS TEMPLATE CANNOT BE USED WITHOUT EXPRESSED PERMISSION FROM:} \c{S}an K{\i}lk{\i}\c{s} and Munyung Kim
+This template has been developed for the [AE3200] Design Synthesis Exercise.
+\texttt{THIS TEMPLATE CANNOT BE USED WITHOUT EXPRESSED PERMISSION FROM:}
+\c{S}an K{\i}lk{\i}\c{s} and Munyung Kim.
 
 \section{Tables \& Figures}
-An example \cref{tab:exampletable} and an example \cref{fig:flame} can be found in this section. When you label tables or figures, make sure to use `tab:name' or `fig:name', this is not necessary for syntax but makes organization and look-up of labels easier. For inserting 2+ figures in a row, look at the formatting of Figure \cref{fig:sbs}. Using the \texttt{cleveref} package negates the need for manually typing `Table' or `Figure'. The syntax is as follows, note that the `tab' in `tab:exampletable' is not necessary for \texttt{cref} and is purely for organizational reasons. However a `,' cannot be utilized as this is interpreted as a list.
+An example \cref{tab:exampletable} and an example \cref{fig:flame} can be found
+in this section. When you label tables or figures, make sure to use `tab:name' 
+or `fig:name', this is not necessary for syntax but makes organization and 
+look-up of labels easier. For inserting 2+ figures in a row, look at the 
+formatting of Figure \cref{fig:sbs}. Using the \texttt{cleveref} package 
+negates the need for manually typing `Table' or `Figure'. The syntax is as 
+follows, note that the `tab' in `tab:exampletable' is not necessary for 
+\texttt{cref} and is purely for organizational reasons. However a `,' 
+cannot be utilized as this is interpreted as a list.
 
 \begin{verbatim}
     \cref{tab:exampletable}
 \end{verbatim}
 
-The Tables below use the package \texttt{tabularx} which adjusts column spacing automatically to fit the table within the margins of the page. The syntax is as follows where 'L' is for Left Aligned, 'C' for Centered, and 'R' is for Right Aligned:
+The Tables below use the package \texttt{tabularx} which adjusts column spacing
+automatically to fit the table within the margins of the page. The syntax is as
+follows where `L' is for Left Aligned, `C' for Centered, and `R' is for Right
+Aligned:
 
 \begin{verbatim}
     \begin{tabularx}{\textwidth}{L C C C}
 \end{verbatim}
 
-In order to keep up the same appearance for all tables use the commands \texttt{toprule}, \texttt{midrule}, \texttt{bottomrule}, and \texttt{hdashline} to create the horizontal lines. NO VERTICAL LINES ARE ALLOWED!
+In order to keep up the same appearance for all tables use the commands 
+\texttt{toprule}, \texttt{midrule}, \texttt{bottomrule}, and \texttt{hdashline} 
+to create the horizontal lines. NO VERTICAL LINES ARE ALLOWED!
 
 \begin{table}[H]
 	\centering
 	\caption{Example Table}
-	\label{tab:exampletable}
-	\begin{tabularx}{\textwidth}{L C C C} %'L' for Left Aligned, 'C' for Centered, 'R' for Right Aligned
+    \label{tab:exampletable}
+    %'L' for Left Aligned, 'C' for Centered, 'R' for Right Aligned
+	\begin{tabularx}{\textwidth}{L C C C}
 	    \toprule\
 		\textbf{Component}				& \textbf{Mass [$\text{kg}$]}	&\textbf{Location [$\text{m}$]} & \textbf{Location [\% MAC]}   \\ \toprule
 		Wing 							& 425.4 						& 5.74 							& 40.00\\\hdashline
@@ -48,8 +64,9 @@ In order to keep up the same appearance for all tables use the commands \texttt{
 \begin{table}[H]
 	\centering
 	\caption{Example Table II}
-	\label{tab:exampletableII}
-    \begin{tabularx}{\textwidth}{C C C C C C C C} %'L' for Left Aligned, 'C' for Centered, 'R' for Right Aligned
+    \label{tab:exampletableII}
+    %'L' for Left Aligned, 'C' for Centered, 'R' for Right Aligned
+    \begin{tabularx}{\textwidth}{C C C C C C C C}
     \toprule\
     {$m$} & {$\Re\{\underline{\mathfrak{X}}(m)\}$} & {$-\Im\{\underline{\mathfrak{X}}(m)\}$} & {$\mathfrak{X}(m)$} & {$\frac{\mathfrak{X}(m)}{23}$} & {$A_m$} & {$\varphi(m)\ /\ ^{\circ}$} & {$\varphi_m\ /\ ^{\circ}$} \\ \toprule
     1  & 16.128 & +8.872 & 16.128 & 1.402 & 1.373 & -146.6 & -137.6 \\ \hdashline
@@ -93,14 +110,23 @@ In order to keep up the same appearance for all tables use the commands \texttt{
 
 
 \section{References \& Citations}
-The \texttt{biblatex} package is used for references with the default `numeric' style for in-text citations and references \cite{sampleref}. The references sorting style is set to `none' meaning that the references are sorted by the order in which they appear in text. A sample file \texttt{samplerefs.bib} is included to help when dealing with different types of publications.
+The \texttt{biblatex} package is used for references with the default `numeric'
+style for in-text citations and references \cite{sampleref}. The references
+sorting style is set to `none' meaning that the references are sorted by the
+order in which they appear in text. A sample file \texttt{samplerefs.bib} is
+included to help when dealing with different types of publications.
 
 \begin{verbatim}
     \cite{citationtag}
 \end{verbatim}
 
 \section{Equations \& Nomenclature}
-When typesetting equations, you need to use a nomenclature code when you introduce a variable for the FIRST time, such that the variable is listed on the list of symbols. An example is given below by \cref{eq:exampleeq}. With the current implementation, duplicate nomenclature items are not automatically removed.
+When typesetting equations, you need to use a nomenclature code when you 
+introduce a variable for the FIRST time, such that the variable is listed on 
+the list of symbols. An example is given below by \cref{eq:exampleeq}. With the
+current implementation, duplicate nomenclature items are not automatically 
+removed.
+
 \begin{equation}
 \label{eq:exampleeq}
     L = \frac{1}{2}\rho V^2 S \cdot C_{L}
@@ -112,7 +138,8 @@ When typesetting equations, you need to use a nomenclature code when you introdu
 \nomenclature[B, 02]{$S$}{Wing Area \nomunit{m^{2}}}
 \nomenclature[G]{$\rho$}{Density of Air \nomunit{kg.m^{-3}}}
 
-The the list of symbols for the above equation were generated with the code below:
+The the list of symbols for the above equation were generated with the code 
+below:
 
 \begin{verbatim}
     \nomenclature[A]{ABCD}{Ayy Bee See Dee}
