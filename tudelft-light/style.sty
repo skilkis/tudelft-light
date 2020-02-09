@@ -29,7 +29,7 @@
     \RequirePackage[hyphens]{url}
     \RequirePackage{array}
     \RequirePackage{fancyhdr} % Inserts a fancy smancy header into sub-pages
-    \RequirePackage[fit, breakall]{truncate} % Used with fancyhdr to fix overlap
+    \RequirePackage[fit, breakall]{truncate} % Used w/ fancyhdr to fix overlap
     \RequirePackage{notoccite}
     \RequirePackage[symbol]{footmisc}
     \RequirePackage{listings}
@@ -150,9 +150,10 @@
 %\\\\\\\\\\\ Fixes Overlapping Text with fancyhdr package \\\\\\\\\\\\\\\\\\\\\
 
 \fancypagestyle{fancytruncated}{%
-    % Uses the truncate package to crop 
-    \fancyhf{}
-    \fancyhead[LE, RO]{\small \truncate{0.47\textwidth} \leftmark}
-    \fancyhead[RE, LO]{\small \truncate{0.47\textwidth} \rightmark}
+    % Uses the truncate package to crop long section and chapter titles
+    % Once the specified width is exceeded the title is split, the left
+    % portion is kept, and `...' dots are appended to the end
+    \fancyhead[R]{\small \truncate{0.47\textwidth} \leftmark}
+    \fancyhead[L]{\small \truncate{0.47\textwidth} \rightmark}
 }
 \pagestyle{fancytruncated} % Display a fancy header on subsequent pages
