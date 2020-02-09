@@ -32,7 +32,7 @@
     \RequirePackage[fit, breakall]{truncate} % Used w/ fancyhdr to fix overlap
     \RequirePackage{notoccite}
     \RequirePackage[symbol]{footmisc}
-    \RequirePackage{listings}
+    \RequirePackage{minted}
     \RequirePackage{siunitx}
     \RequirePackage[titletoc]{appendix}
     
@@ -80,21 +80,15 @@
 %\\\\\\\\\\ Setting-up Nomenclature Classes \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     \RequirePackage[intoc]{nomencl}
     \makenomenclature
-        
-    % \RequirePackage{etoolbox}
+
     \renewcommand\nomgroup[1]{%
         \item[\bfseries
             \ifthenelse{\equal{#1}{G}}{Greek Symbols}{%
             \ifthenelse{\equal{#1}{B}}{Roman Symbols}{%
             \ifthenelse{\equal{#1}{S}}{Subscripts}{%
-            \ifthenelse{\equal{T}{Superscripts}}{%
-            %ADD MORE CLASSES HERE (Order does not matter, LaTeX will sort classes Based on !Class Reference
-            %\ifstrequal{#1}{!Class Reference}{!Class Name}{%
-            %\ifstrequal{#1}{!Class Reference}{!Class Name}{%
-            %\ifstrequal{#1}{!Class Reference}{!Class Name}{%
+            \ifthenelse{\equal{#1}{T}}{Superscripts}{%
             \ifthenelse{\equal{#1}{A}}{Abbreviations}{}}}}}%
         ]}
-     
     % This argument will add the units
     \newcommand{\nomunit}[1]{%
     \renewcommand{\nomentryend}{\hspace*{\fill}\si{#1}}}
