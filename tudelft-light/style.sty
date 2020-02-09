@@ -1,50 +1,51 @@
+\NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{tudelft-light/style}
 
 %\\\\\\\\\\\ Document Preamble \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-    \usepackage[margin=6pc, headheight=14pt]{geometry}
-    \usepackage{import}
-    % \usepackage[utf8]{inputenc}
-    \usepackage{xcolor} % Useful for colored tables!
-    \usepackage{amsfonts}
-    \usepackage{amsmath}
-    \usepackage{mathtools}
-    \usepackage{amssymb}
-    \usepackage[super]{nth}
-    \usepackage{graphicx}
-    \usepackage{tikz}
-    \usepackage{pgfplots}
-    \usepackage{datatool}
-    \usepackage{tabularx}
-    \usepackage{rotating}
-    \usepackage{pdflscape}
-    \usepackage{float}
-    \usepackage{booktabs}
-    \usepackage{titlesec,color}
-    \usepackage{caption}
-    \usepackage{enumitem}
-    \usepackage{subcaption}
-    \usepackage{pdfpages}
-    \usepackage[hyphens]{url}
-    \usepackage{array}
-    \usepackage{fancyhdr} % Inserts a fancy smancy header into sub-pages
-    \usepackage[fit, breakall]{truncate} % Used with fancyhdr to fix overlap
-    \usepackage{notoccite}
-    \usepackage[symbol]{footmisc}
-    \usepackage{listings}
-    \usepackage{siunitx}
-    \usepackage[titletoc]{appendix}
+    \RequirePackage[margin=6pc, headheight=14pt]{geometry}
+    \RequirePackage{import}
+    \RequirePackage{xcolor} % Useful for colored tables!
+    \RequirePackage{amsfonts}
+    \RequirePackage{amsmath}
+    \RequirePackage{amssymb}
+    \RequirePackage{mathtools}
+    \RequirePackage[super]{nth}
+    \RequirePackage{graphicx}
+    \RequirePackage{tikz}
+    \RequirePackage{pgfplots}
+    \RequirePackage{datatool}
+    \RequirePackage{tabularx}
+    \RequirePackage{rotating}
+    \RequirePackage{pdflscape}
+    \RequirePackage{float}
+    \RequirePackage{booktabs}
+    \RequirePackage{color}
+    \RequirePackage{titlesec}
+    \RequirePackage{caption}
+    \RequirePackage{enumitem}
+    \RequirePackage{subcaption}
+    \RequirePackage{pdfpages}
+    \RequirePackage[hyphens]{url}
+    \RequirePackage{array}
+    \RequirePackage{fancyhdr} % Inserts a fancy smancy header into sub-pages
+    \RequirePackage[fit, breakall]{truncate} % Used with fancyhdr to fix overlap
+    \RequirePackage{notoccite}
+    \RequirePackage[symbol]{footmisc}
+    \RequirePackage{listings}
+    \RequirePackage{siunitx}
+    \RequirePackage[titletoc]{appendix}
     
-    \usepackage{arydshln} % Adding dashlines in arrays \hdashline   
+    \RequirePackage{arydshln} % Adding dashlines in arrays \hdashline   
     \pgfplotsset{compat=1.16} % Setting compatibility for PGF Plots
     
     %% FOR DEBUGGING %%
-    \usepackage{blindtext}
+    \RequirePackage{blindtext}
 
 
 %\\\\\\\\\\\ Document Properties \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-    \usepackage[hidelinks, unicode]{hyperref}
+    \RequirePackage[hidelinks, unicode]{hyperref}
     \hypersetup{
         pdftoolbar=true,        % show Acrobat’s toolbar?
         pdfmenubar=true,        % show Acrobat’s menu?
@@ -65,22 +66,22 @@
     }
 
     % Automatic Referencing: WARNING HAS TO BE LOADED AFTER hyperref
-    \usepackage[capitalise, noabbrev, nameinlink]{cleveref}
+    \RequirePackage[capitalise, noabbrev, nameinlink]{cleveref}
     % Removes Parenthesis around Equation labels
     \creflabelformat{equation}{#2\textup{#1}#3}
     % Footnote style Roman numerals
     \renewcommand{\thefootnote}{\roman{footnote}} 
-    \usepackage{tablefootnote}
+    \RequirePackage{tablefootnote}
     
         
     \setlength{\parindent}{0cm} % No indent
 
 
 %\\\\\\\\\\ Setting-up Nomenclature Classes \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-    \usepackage{nomencl}
+    \RequirePackage{nomencl}
     \makenomenclature
         
-    % \usepackage{etoolbox}
+    % \RequirePackage{etoolbox}
     \renewcommand\nomgroup[1]{%
         \item[\bfseries
             \ifthenelse{\equal{#1}{G}}{Greek Symbols}{%
@@ -133,7 +134,7 @@
 
 %\\\\\\\\\\\ Rename Bibliography to References \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-    \usepackage[backend=biber,
+    \RequirePackage[backend=biber,
                 style=numeric,
                 citestyle=numeric,
                 sorting=none
