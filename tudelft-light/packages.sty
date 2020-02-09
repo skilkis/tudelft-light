@@ -1,0 +1,52 @@
+% Refer to: https://www.overleaf.com/learn/latex/Writing_your_own_package
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{tudelft-light/packages}
+
+\RequirePackage[margin=6pc, headheight=14pt]{geometry}
+\RequirePackage{import}
+\RequirePackage{xcolor} % Useful for colored tables!
+\RequirePackage{amsfonts}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{mathtools}
+\RequirePackage[super]{nth}
+\RequirePackage{graphicx}
+\RequirePackage{tikz}
+\RequirePackage{pgfplots}
+\RequirePackage{datatool}
+\RequirePackage{tabularx}
+\RequirePackage{rotating}
+\RequirePackage{pdflscape}
+\RequirePackage{float}
+\RequirePackage{booktabs}
+\RequirePackage{color} % FIXME Find out if this package is redundant
+\RequirePackage{titlesec}
+\RequirePackage{caption}
+\RequirePackage{enumitem}
+\RequirePackage{subcaption}
+\RequirePackage{pdfpages}
+\RequirePackage[hyphens]{url}
+\RequirePackage{array}
+\RequirePackage{fancyhdr} % Inserts a fancy smancy header into sub-pages
+\RequirePackage[fit, breakall]{truncate} % Used w/ fancyhdr to fix overlap
+\RequirePackage{notoccite}
+\RequirePackage[symbol]{footmisc}
+\RequirePackage{minted}
+\RequirePackage{siunitx}
+\RequirePackage[titletoc]{appendix}
+\RequirePackage[hidelinks, unicode]{hyperref}
+\RequirePackage{blindtext} % Useful for debugging
+\RequirePackage{arydshln} % Used for adding dashlines in arrays \hdashline
+\RequirePackage{tablefootnote} % Put footnotes in tables
+
+
+% Automatic Referencing: WARNING HAS TO BE LOADED AFTER hyperref
+\RequirePackage[capitalise, noabbrev, nameinlink]{cleveref}
+\RequirePackage[%
+    backend=biber,
+    style=numeric,
+    citestyle=numeric,
+    sorting=none
+]{biblatex}
+\RequirePackage[intoc]{nomencl}

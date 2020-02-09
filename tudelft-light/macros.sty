@@ -1,0 +1,16 @@
+% Refer to: https://www.overleaf.com/learn/latex/Writing_your_own_package
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{tudelft-light/macros}
+
+% This argument will add the units
+\newcommand{\nomunit}[1]{%
+\renewcommand{\nomentryend}{\hspace*{\fill}\si{#1}}}
+
+%\\\\\\\\\\\ Command for XDSM Files \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+\newcommand{\zero}[1]{{#1}^{\left(0\right)}}
+
+%\\\\\\\\\\\ Simplification for Bibliography Creation \\\\\\\\\\\\\\\\\\\\\\\\\
+
+% \renewcommand{\printbibliography}{}
