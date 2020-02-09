@@ -27,7 +27,7 @@
     \usepackage[hyphens]{url}
     \usepackage{array}
     \usepackage{fancyhdr} % Inserts a fancy smancy header into sub-pages
-    \pagestyle{fancy}
+    \usepackage[fit, breakall]{truncate} % Used with fancyhdr to fix overlap
     \usepackage{notoccite}
     \usepackage[symbol]{footmisc}
     \usepackage{listings}
@@ -125,7 +125,10 @@
     \titlespacing*{\chapter}{0pt}{-25pt}{10pt}
     \definecolor{gray75}{gray}{0}
     \newcommand{\hsp}{\hspace{3pt}}
-    \titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter\hsp\textcolor{gray75}\hsp}{10pt}{\Huge\bfseries}
+    \titleformat{\chapter}[hang]%
+        {\Huge\bfseries}%
+        {\thechapter\hsp\textcolor{gray75}\hsp}%
+        {10pt}{\Huge\bfseries}
 
 %\\\\\\\\\\\ Rename Bibliography to References \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
@@ -140,3 +143,14 @@
 %\\\\\\\\\\\ Command for XDSM Files \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 % \newcommand{\zero}[1]{{#1}^{\left(0\right)}}
+
+
+%\\\\\\\\\\\ Fixes Overlapping Text with fancyhdr package \\\\\\\\\\\\\\\\\\\\\
+
+\fancypagestyle{fancytruncated}{%
+    % Uses the truncate package to crop 
+    \fancyhf{}
+    \fancyhead[LE, RO]{\small \truncate{0.47\textwidth} \leftmark}
+    \fancyhead[RE, LO]{\small \truncate{0.47\textwidth} \rightmark}
+}
+\pagestyle{fancytruncated} % Display a fancy header on subsequent pages
