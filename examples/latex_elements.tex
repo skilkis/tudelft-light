@@ -1,19 +1,20 @@
 \chapter{Example \LaTeX\ Elements}
 \pagenumbering{arabic} %DO NOT REMOVE FROM THE INTRODUCTION CHAPTER
-This template has been developed for the [AE3200] Design Synthesis Exercise.
-\texttt{THIS TEMPLATE CANNOT BE USED WITHOUT EXPRESSED PERMISSION FROM:}
-\c{S}an K{\i}lk{\i}\c{s} and Munyung Kim.
+This template has been developed for the [AE3200] Design Synthesis Exercise by
+\c{S}an K{\i}lk{\i}\c{s} and Munyung Kim. The source code can be modified and
+redistributed but the license file must remain intact. Refer to the
+\texttt{LICENSE.md} included with the template for details.
 
 \section{Tables \& Figures}
 An example \cref{tab:exampletable} and an example \cref{fig:flame} can be found
-in this section. When you label tables or figures, make sure to use `tab:name' 
-or `fig:name', this is not necessary for syntax but makes organization and 
-look-up of labels easier. For inserting 2+ figures in a row, look at the 
-formatting of Figure \cref{fig:sbs}. Using the \texttt{cleveref} package 
-negates the need for manually typing `Table' or `Figure'. The syntax is as 
-follows, note that the `tab' in `tab:exampletable' is not necessary for 
-\texttt{cref} and is purely for organizational reasons. However a `,' 
-cannot be utilized as this is interpreted as a list.
+in this section. When you label tables or figures, make sure to use `tab:name'
+or `fig:name', this is not necessary for syntax but makes organization and
+look-up of labels easier. For inserting 2+ figures in a row, look at the
+formatting of Figure \cref{fig:sbs}. Using the \texttt{cleveref} package
+negates the need for manually typing `Table' or `Figure'. The syntax is as
+follows, note that the `tab' in `tab:exampletable' is not necessary for
+\texttt{cref} and is purely for organizational reasons. However a `,' cannot be
+utilized as this is interpreted as a list.
 
 \begin{verbatim}
     \cref{tab:exampletable}
@@ -21,23 +22,22 @@ cannot be utilized as this is interpreted as a list.
 
 The Tables below use the package \texttt{tabularx} which adjusts column spacing
 automatically to fit the table within the margins of the page. The syntax is as
-follows where `L' is for Left Aligned, `C' for Centered, and `R' is for Right
+follows where 'L' is for Left Aligned, 'C' for Centered, and 'R' is for Right
 Aligned:
 
 \begin{verbatim}
     \begin{tabularx}{\textwidth}{L C C C}
 \end{verbatim}
 
-In order to keep up the same appearance for all tables use the commands 
-\texttt{toprule}, \texttt{midrule}, \texttt{bottomrule}, and \texttt{hdashline} 
+In order to keep up the same appearance for all tables use the commands
+\texttt{toprule}, \texttt{midrule}, \texttt{bottomrule}, and \texttt{hdashline}
 to create the horizontal lines. NO VERTICAL LINES ARE ALLOWED!
 
 \begin{table}[H]
 	\centering
 	\caption{Example Table}
-    \label{tab:exampletable}
-    %'L' for Left Aligned, 'C' for Centered, 'R' for Right Aligned
-	\begin{tabularx}{\textwidth}{L C C C}
+	\label{tab:exampletable}
+	\begin{tabularx}{\textwidth}{L C C C} %'L' for Left Aligned, 'C' for Centered, 'R' for Right Aligned
 	    \toprule\
 		\textbf{Component}				& \textbf{Mass [$\text{kg}$]}	&\textbf{Location [$\text{m}$]} & \textbf{Location [\% MAC]}   \\ \toprule
 		Wing 							& 425.4 						& 5.74 							& 40.00\\\hdashline
@@ -60,13 +60,11 @@ to create the horizontal lines. NO VERTICAL LINES ARE ALLOWED!
 	\end{tabularx}
 \end{table}
 
-
 \begin{table}[H]
 	\centering
 	\caption{Example Table II}
-    \label{tab:exampletableII}
-    %'L' for Left Aligned, 'C' for Centered, 'R' for Right Aligned
-    \begin{tabularx}{\textwidth}{C C C C C C C C}
+	\label{tab:exampletableII}
+    \begin{tabularx}{\textwidth}{C C C C C C C C} %'L' for Left Aligned, 'C' for Centered, 'R' for Right Aligned
     \toprule\
     {$m$} & {$\Re\{\underline{\mathfrak{X}}(m)\}$} & {$-\Im\{\underline{\mathfrak{X}}(m)\}$} & {$\mathfrak{X}(m)$} & {$\frac{\mathfrak{X}(m)}{23}$} & {$A_m$} & {$\varphi(m)\ /\ ^{\circ}$} & {$\varphi_m\ /\ ^{\circ}$} \\ \toprule
     1  & 16.128 & +8.872 & 16.128 & 1.402 & 1.373 & -146.6 & -137.6 \\ \hdashline
@@ -85,7 +83,7 @@ to create the horizontal lines. NO VERTICAL LINES ARE ALLOWED!
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.3\textwidth]{Introduction/Figures/flame.jpg}
+    \includegraphics[width=0.3\textwidth]{examples/flame.jpg}
     \caption{TU Delft Logo Flame}
     \label{fig:flame}
 \end{figure}
@@ -94,13 +92,13 @@ to create the horizontal lines. NO VERTICAL LINES ARE ALLOWED!
 \centering
 \begin{subfigure}[b]{0.5\textwidth}
   \centering
-  \includegraphics[width=.85\textwidth]{Introduction/Figures/flame.jpg}
+  \includegraphics[width=.85\textwidth]{examples/flame.jpg}
   \subcaption{TU Delft Logo Flame}
   \label{fig:flame1}
 \end{subfigure}%
 \begin{subfigure}[b]{0.5\textwidth}
   \centering
-  \includegraphics[width=.85\textwidth]{Introduction/Figures/flame.jpg}
+  \includegraphics[width=.85\textwidth]{examples/flame.jpg}
   \subcaption{TU Delft Logo Flame}
   \label{fig:flame2}
 \end{subfigure}
@@ -120,11 +118,14 @@ included to help when dealing with different types of publications.
     \cite{citationtag}
 \end{verbatim}
 
+% TODO add syntax for adding page numbers
+% TODO add 
+
 \section{Equations \& Nomenclature}
-When typesetting equations, you need to use a nomenclature code when you 
-introduce a variable for the FIRST time, such that the variable is listed on 
+When typesetting equations, you need to use a nomenclature code when you
+introduce a variable for the FIRST time, such that the variable is listed on
 the list of symbols. An example is given below by \cref{eq:exampleeq}. With the
-current implementation, duplicate nomenclature items are not automatically 
+current implementation, duplicate nomenclature items are not automatically
 removed.
 
 \begin{equation}
@@ -138,7 +139,7 @@ removed.
 \nomenclature[B, 02]{$S$}{Wing Area \nomunit{m^{2}}}
 \nomenclature[G]{$\rho$}{Density of Air \nomunit{kg.m^{-3}}}
 
-The the list of symbols for the above equation were generated with the code 
+The the list of symbols for the above equation were generated with the code
 below:
 
 \begin{verbatim}
@@ -151,10 +152,17 @@ below:
 
 
 \section{Units and Numbers}
+To have uniform spacing and formatting of numbers and units the
+\textsf{siunitx} package can be used. The syntax for displaying a number
+with its corresponding unit as ``\SI{5}{\kilogram}'' is as follows:
+
 \begin{verbatim}
     \SI{5}{\kilogram}
 \end{verbatim}
 
+Formatting of a unit of measure as ``\si{\kilogram}`'' is as follows, pay
+close attention to the lower-case call to \texttt{\textbackslash si}.
 
-
-
+\begin{verbatim}
+    \si{\kilogram}
+\end{verbatim}
