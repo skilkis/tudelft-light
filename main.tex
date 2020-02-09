@@ -1,17 +1,16 @@
 \documentclass[11pt,a4paper,reqno,titlepage]{report}
 \usepackage{tudelft-light/style}
 
-%Document
+%Outer Title Page
 \begin{document}
 \includepdf[pages={1}]{tudelft-light/title/outercover.pdf}
-\setlength{\parindent}{0cm} % No indent
 
 %Inner Title Page
 \input{tudelft-light/title/innercover.tex}
 
-%Document Part I:
+%Document Part I: Front matter
 \begingroup
-\pagenumbering{roman} % Roman numbering
+\pagenumbering{roman} % Roman page numbers (I, II, III)
     
     %Summary
     %\input{summary} % Summary
@@ -26,7 +25,6 @@
     
     %List of Symbols
     \printnomenclature[50pt]
-    \addcontentsline{toc}{chapter}{List of Symbols}
 
     %List of Figures
     \listoffigures
@@ -37,9 +35,9 @@
     \addcontentsline{toc}{chapter}{List of Tables}
 \endgroup
 
-
-%Document Part II:
+%Document Part II: Main Matter
 \begingroup
+\pagenumbering{arabic}
 
     %Chapters:
     \import{examples/}{latex_elements}

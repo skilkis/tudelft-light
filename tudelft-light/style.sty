@@ -78,7 +78,7 @@
 
 
 %\\\\\\\\\\ Setting-up Nomenclature Classes \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-    \RequirePackage{nomencl}
+    \RequirePackage[intoc]{nomencl}
     \makenomenclature
         
     % \RequirePackage{etoolbox}
@@ -134,11 +134,12 @@
 
 %\\\\\\\\\\\ Rename Bibliography to References \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-    \RequirePackage[backend=biber,
-                style=numeric,
-                citestyle=numeric,
-                sorting=none
-                ]{biblatex}
+    \RequirePackage[%
+        backend=biber,
+        style=numeric,
+        citestyle=numeric,
+        sorting=none
+    ]{biblatex}
     \addbibresource{references.bib} %Bibliography File
     \newcommand{\BibliographyName}{References} %Name of Biblography
     
