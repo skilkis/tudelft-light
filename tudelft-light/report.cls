@@ -3,7 +3,26 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{tudelft-light/report}[2018/02/08 TU Delft Light Report Class]
  
+%\\\\\\\\\\\ Class Options \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+\RequirePackage{kvoptions}
+
+% Simplifying family name, otherwise it would be tudelft-light/report
+\SetupKeyvalOptions{
+    family=tud,
+    prefix=tud@,
+}
+
+\DeclareBoolOption{fancyheader}
+
+% Passing all unspecified options to the report class of the LaTeX Std. Lib.
+\DeclareDefaultOption{\PassOptionsToClass{\CurrentOptionKey}{report}}
+\ProcessKeyvalOptions*
+
 \LoadClass{report}
+
+%\\\\\\\\\\\ Importing Custom Packages \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
 \RequirePackage{tudelft-light/packages}
 \RequirePackage{tudelft-light/style}
 \RequirePackage{tudelft-light/macros}
@@ -29,12 +48,18 @@
     \fancyhead[R]{\small \truncate{0.47\textwidth} \leftmark}
     \fancyhead[L]{\small \truncate{0.47\textwidth} \rightmark}
 }
-\pagestyle{fancytruncated} % Display a fancy header on subsequent pages
+
+\iftud@fancyheader
+    \pagestyle{fancytruncated} % Display a fancy header on subsequent pages
+% \else
+%     % \pagestyle{fancytruncated} % Display a fancy header on subsequent pages
+\fi
 
 % Footnote style Roman numerals
 \renewcommand{\thefootnote}{\roman{footnote}} 
 
 %\\\\\\\\\\ Nomenclature Categories and Configuration \\\\\\\\\\\\\\\\\\\\\\\\\
+
 \makenomenclature
 
 \renewcommand\nomgroup[1]{%
@@ -74,20 +99,3 @@
 
 \addbibresource{references.bib} %Bibliography File
 \newcommand{\BibliographyName}{References} %Name of Biblography
-
-%\\\\\\\\\\ TU Delft House Style Colors \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-\definecolor{tudelft-cyan}{cmyk}{1,0,0,0}
-\definecolor{tudelft-black}{cmyk}{0,0,0,1}
-\definecolor{tudelft-white}{cmyk}{0,0,0,0}
-\definecolor{tudelft-sea-green}{cmyk}{0.54,0,0.32,0}
-\definecolor{tudelft-green}{cmyk}{1,0.15,0.4,0}
-\definecolor{tudelft-dark-blue}{cmyk}{1,0.66,0,0.4}
-\definecolor{tudelft-purple}{cmyk}{0.98,1,0,0.35}
-\definecolor{tudelft-turquoise}{cmyk}{0.82,0,0.21,0.08}
-\definecolor{tudelft-sky-blue}{cmyk}{0.45,0,0.06,0.06}
-\definecolor{tudelft-lavendel}{cmyk}{0.45,0.2,0,0.07}
-\definecolor{tudelft-orange}{cmyk}{0.02,0.56,0.84,0}
-\definecolor{tudelft-warm-purple}{cmyk}{0.58,1,0,0.02}
-\definecolor{tudelft-fuchsia}{cmyk}{0.19,1,0,0.19}
-\definecolor{tudelft-bright-green}{cmyk}{0.36,0,1,0}
-\definecolor{tudelft-yellow}{cmyk}{0.02,0,0.54,0}
