@@ -1,27 +1,58 @@
+% -----------------------------------------------------------------------------
+%
+% Copyright (c) 2020. San Kilkis. All rights reserved.
+% 
+% This Source Code Form is subject to the terms of the Mozilla Public
+% License, v. 2.0. If a copy of the MPL was not distributed with this
+% file, You can obtain one at http://mozilla.org/MPL/2.0/
+%
+% --- Package Documentation: --------------------------------------------------
+% 
+% This package defines colors and fonts as per the TU Delft House Style.
+%
+% -----------------------------------------------------------------------------
+
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{tudelft-light/style}
 
-%\\\\\\\\\\\ Document Properties \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\RequirePackage{xcolor}
+\RequirePackage{fontspec}
 
-\hypersetup{
-    pdftoolbar=true,        % show Acrobat’s toolbar?
-    pdfmenubar=true,        % show Acrobat’s menu?
-    pdffitwindow=false,     % window fit to page when opened
-    pdfstartview={FitH},    % fits the width/height of the page
-    pdftitle={},            % title
-    pdfauthor={},           % author
-    pdfsubject={},          % subject of the document
-    pdfcreator={},          % creator of the document
-    pdfproducer={},         % producer of the document
-    pdfkeywords={},         % list of keywords
-    pdfnewwindow=true,      % links in new window
-    colorlinks=true,        % false: boxed links; true: colored links
-    linkcolor=black,        % color of internal links
-    citecolor=cyan,         % color of links to bibliography
-    filecolor=black,        % color of file links
-    urlcolor=black          % color of external links
-}
-    
+% --- TU Delft Housestyle Colors: ---------------------------------------------
+\definecolor{tudelft-cyan}{cmyk}{1,0,0,0}
+\definecolor{tudelft-black}{cmyk}{0,0,0,1}
+\definecolor{tudelft-white}{cmyk}{0,0,0,0}
+\definecolor{tudelft-sea-green}{cmyk}{0.54,0,0.32,0}
+\definecolor{tudelft-green}{cmyk}{1,0.15,0.4,0}
+\definecolor{tudelft-dark-blue}{cmyk}{1,0.66,0,0.4}
+\definecolor{tudelft-purple}{cmyk}{0.98,1,0,0.35}
+\definecolor{tudelft-turquoise}{cmyk}{0.82,0,0.21,0.08}
+\definecolor{tudelft-sky-blue}{cmyk}{0.45,0,0.06,0.06}
+\definecolor{tudelft-lavendel}{cmyk}{0.45,0.2,0,0.07}
+\definecolor{tudelft-orange}{cmyk}{0.02,0.56,0.84,0}
+\definecolor{tudelft-warm-purple}{cmyk}{0.58,1,0,0.02}
+\definecolor{tudelft-fuchsia}{cmyk}{0.19,1,0,0.19}
+\definecolor{tudelft-bright-green}{cmyk}{0.36,0,1,0}
+\definecolor{tudelft-yellow}{cmyk}{0.02,0,0.54,0}
 
+% --- TU Delft Fonts: ---------------------------------------------------------
+\newfontfamily\tudtitlefamily[
+    Path = tudelft-light/fonts/,
+    Extension = .ttf%,
+]{TUDelft-UltraLight}
 
+\newfontfamily\tudrmfamily[
+    Path = tudelft-light/fonts/,
+    Extension = .ttf,
+    BoldFont = *_Bold,
+    ItalicFont = *_Italic,
+    BoldItalicFont = *_Bold_Italic
+]{Georgia}
 
+\newfontfamily\tudsffamily[
+    Path = tudelft-light/fonts/,
+    Extension = .ttf,
+    BoldFont = *_Bold,
+    ItalicFont = *_Italic,
+    BoldItalicFont = *_Bold_Italic
+]{Arial}
