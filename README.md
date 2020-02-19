@@ -178,4 +178,3 @@ is recommended.
 <!-- Un-wrapped URL Links -->
 [Mendeley]: https://www.mendeley.com/
 [Zotero]: https://www.zotero.org/
-
