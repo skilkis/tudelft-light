@@ -1,0 +1,193 @@
+% -----------------------------------------------------------------------------
+%
+% Copyright (c) 2020. San Kilkis. All rights reserved.
+% 
+% This Source Code Form is subject to the terms of the Mozilla Public
+% License, v. 2.0. If a copy of the MPL was not distributed with this
+% file, You can obtain one at http://mozilla.org/MPL/2.0/
+%
+% --- Package Documentation: --------------------------------------------------
+% 
+% This package performs a setup of document metadata.
+%
+% Several macros are provided that can be called either inside or outside of
+% of the document environment (i.e. before or after \begindocument):
+%
+%   * \title: Sets document title
+%   * \subtitle: Sets document subject or subtitle
+%   * \course (optional): Sets the course the document is intended for
+%   * \supervisor: Sets document supervisor(s)
+%   * \author: Sets document author(s)
+%   * \abstract (optional): Sets a short abstract (shown on titlepage)
+%
+% -----------------------------------------------------------------------------
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{tudelft-light/setup}
+
+\RequirePackage{tudelft-light/style}  % Needed for setup of PDF colorlinks
+
+% --- Document Meta-Data and Properties ---------------------------------------
+\hypersetup{
+    pdftoolbar=true,            % show Acrobat’s toolbar?
+    pdfmenubar=true,            % show Acrobat’s menu?
+    pdffitwindow=true,          % window fit to page when opened
+    pdfstartview={Fit},         % fits the paper of the screen
+    pdftitle={},                % title
+    pdfauthor={},               % author
+    pdfsubject={},              % subject of the document
+    pdfcreator={},              % creator of the document
+    pdfproducer={},             % producer of the document
+    pdfkeywords={},             % list of keywords
+    pdfnewwindow=true,          % links in new window
+    colorlinks=true,            % false: boxed links; true: colored links
+    linkcolor=tudelft-black,    % color of internal links
+    citecolor=tudelft-cyan,     % color of links to bibliography
+    filecolor=tudelft-black,    % color of file links
+    urlcolor=tudelft-black      % color of external links
+}
+
+% --- Definition of Text Setting Macros: --------------------------------------
+\renewcommand*{\title}[2][\relax]{
+    % Defines the document title.
+    %
+    % Usage:
+    %   \title{Document Title}
+    %
+    % To define a separate title on the cover page use the following syntax:
+    %
+    %   \title[Cover Page Title]{Document Title}
+    %
+    % Optional Arguments:
+    %   1 (string): Sets the title of the coverpage
+    %
+    % Positional Arguments:
+    %   2 (string): Sets the title of the document (Also effects the PDF Title)
+
+    \def\@title{#2}
+    \hypersetup{pdftitle=#2}  % Setting metadata of PDF title field
+    % If the user passes an optional argument it is stored in the \@cover@title
+    % variable to be used later in the \makecover macro
+    \if#1\relax\else
+        \def\@cover@title{#1}
+    \fi
+}
+
+\newcommand*{\subtitle}[2][\relax]{
+    % Defines the document subject or subtitle.
+    %
+    % Usage:
+    %   \subtitle{Document Subtitle or Subject}
+    %
+    % To define a separate subtitle on the cover page use the following syntax:
+    %
+    %   \subtitle[Cover Page Subtitle]{Document Subtitle}
+    %
+    % Optional Arguments:
+    %   1 (string): Sets the subtitle of the coverpage
+    %
+    % Positional Arguments:
+    %   2 (string): Sets the subtitle of the document (Stored in PDF subject)
+
+    \def\@subtitle{#2}
+    \hypersetup{pdfsubject=#2}  % Setting metadata of PDF subject field
+    % If the user passes an optional argument it is stored in the
+    % \@cover@subtitle variable to be used later in the \makecover macro
+    \if #1\relax\else
+        \def\@cover@subtitle{#1}
+    \fi
+}
+
+\newcommand*{\course}[1]{
+    % Defines the course code and name of the document (used in titlepage).
+    %
+    % Positional Arguments:
+    %   1 (string): Course code and name
+
+    \def\@course{#1}
+}
+
+\renewcommand*{\author}[1]{
+    % Defines the document author(s).
+    %
+    % The listofitems package is used to parse the string input. The (,)
+    % delimiter is used to specify multiple authors. Furthermore, the (|)
+    % delimeter is used to optionally specify a student number for an author:
+    %
+    %   \author{John Doe | 0000001, Jane Doe | 0000002}
+    %
+    % Positional Arguments:
+    %   1 (string): Author(s) of the document
+
+    % Parsing string input with (,) delimiter into a list
+    \setsepchar{,}
+    \ignoreemptyitems
+    \readlist*\@author@items{#1}
+
+    % Filtering items for only author names (Result stored in \@author@names)
+    \author@getnames{\@author@items}
+
+    \hypersetup{
+        pdfauthor={\@author@names}
+    }
+}
+
+\newcommand{\author@getnames}[1]{
+    % Filters the parsed \@author@items list to produce a list of names.
+    %
+    % This macro is useful to strip away the student numbers supplied to the
+    % \author macro which can then be used in the pdfauthor field. An example
+    % output of this macro:
+    %
+    %   \author{John Doe | 0000001, Jane Doe | 0000002}
+    %   \author@getnames{\@author@items}
+    %   \@author@names
+    %   John Doe, Jane Doe
+    %
+    % Positional Arguments:
+    %   1 (string): Parsed authors of the document with listofnames package
+    %
+    % Returns:
+    %   (null): The result is stored in the \@author@names variable since
+    %       the hyperref package was not working with a return string.
+
+    \def\@author@names{\relax} % Creating variable for storing author names
+    \foreachitem \x \in #1{
+        \setsepchar{{|}} % Parsing author and student number
+        \readlist*\splitlist{\x}
+        \edef\@author@names{%
+            \ifnum \xcnt = 1
+                % On first iteration the name is assigned to @author@names
+                \splitlist[1]%
+            \else
+                % Subsequent iterations append to the @author@names variable
+                \@author@names, \splitlist[1]%
+            \fi
+        }
+    }
+}
+
+\newcommand*{\supervisor}[1]{
+    % Defines the document supervisor(s).
+    %
+    % Usage:
+    %   \supervisor{Dr. Jan Jansen, Dr. Pietje Puk}
+    %
+    % Positional Arguments:
+    %   2 (string): Supervisor(s) of the document
+
+    \setsepchar{,}
+    \ignoreemptyitems
+    \readlist*\@supervisor@items{#1}
+}
+
+\renewcommand*{\abstract}[1]{
+    % Defines the document abstract as displayed on the title page.
+    %
+    % Usage:
+    %   \abstract{\input{examples/abstract.tex}}
+    %
+    % Positional Arguments:
+    %   1 (string): Sets the document abstract
+    \def\@abstract{#1}
+}
