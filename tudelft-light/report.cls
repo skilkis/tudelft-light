@@ -2,9 +2,9 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{tudelft-light/report}[2018/02/08 TU Delft Light Report Class]
- 
-%\\\\\\\\\\\ Class Options \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
+%\\\\\\\\\\\ Class Options \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+ 
 \RequirePackage{kvoptions}
 
 % Simplifying family name, otherwise it would be tudelft-light/report
@@ -47,18 +47,16 @@
 % Once the specified width is exceeded the title is split, the left
 % portion is kept, and `...' dots are appended to the end
 \fancypagestyle{fancytruncated}{%
-    \fancyhead[R]{\small \truncate{0.47\textwidth} \leftmark}
-    \fancyhead[L]{\small \truncate{0.47\textwidth} \rightmark}
+    \fancyhead[R]{\itshape\small \truncate{0.47\textwidth} \leftmark}
+    \fancyhead[L]{\itshape\small \truncate{0.47\textwidth} \rightmark}
 }
 
 \iftud@fancyheader
     \pagestyle{fancytruncated} % Display a fancy header on subsequent pages
-% \else
-%     % \pagestyle{fancytruncated} % Display a fancy header on subsequent pages
 \fi
 
 % Footnote style Roman numerals
-\renewcommand{\thefootnote}{\roman{footnote}} 
+\renewcommand{\thefootnote}{\roman{footnote}}
 
 %\\\\\\\\\\ Nomenclature Categories and Configuration \\\\\\\\\\\\\\\\\\\\\\\\\
 
