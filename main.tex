@@ -22,10 +22,14 @@
 
     %Table of Contents
     \renewcommand{\contentsname}{Table of Contents}
-    \tableofcontents
-    \thispagestyle{empty}
-    \setcounter{page}{0}
-    \clearpage
+    \begingroup
+        \tableofcontents
+        \pagestyle{empty} % Removes fancy header and footer
+        \thispagestyle{empty} % Ensures that page number can be overwritten
+        \renewcommand{\thepage}{ToC} % Renames 
+        \setcounter{page}{0}
+        \cleardoublepage
+    \endgroup
     
     %List of Symbols
     \printnomenclature[50pt]
