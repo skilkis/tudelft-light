@@ -1,8 +1,15 @@
-\documentclass[11pt,a4paper,reqno,titlepage]{tudelft-light/report}
+\documentclass[11pt,a4paper,reqno,fancyheader]{tudelft-light/report}
 
-%Outer Title Page
+\title[TU Delft Light]{TU Delft Light}
+\subtitle{An Easy to Use \LaTeX\ Template}
+\author{John Doe | 0000001, Jane Doe | 0000002}  % {Name | Student Number}
+\course{[TU0000] \LaTeX\ 101}
+\supervisor{Dr. Jan Jansen}
+\abstract{\input{examples/abstract.tex}}
+
 \begin{document}
-\includepdf[pages={1}]{tudelft-light/title/outercover.pdf}
+
+\makecover[theme=light, fill opacity=0.1]
 
 %Inner Title Page
 \input{tudelft-light/title.tex}

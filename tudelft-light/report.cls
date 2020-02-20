@@ -26,6 +26,7 @@
 \RequirePackage{tudelft-light/packages}
 \RequirePackage{tudelft-light/style}
 \RequirePackage{tudelft-light/setup}
+\RequirePackage{tudelft-light/cover}
 \RequirePackage{tudelft-light/macros}
 
 %\\\\\\\\\\\ Document Layout & Title Margins \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

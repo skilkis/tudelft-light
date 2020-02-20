@@ -1,0 +1,257 @@
+% -----------------------------------------------------------------------------
+%
+% Copyright (c) 2020. San Kilkis. All rights reserved.
+% 
+% This Source Code Form is subject to the terms of the Mozilla Public
+% License, v. 2.0. If a copy of the MPL was not distributed with this
+% file, You can obtain one at http://mozilla.org/MPL/2.0/
+%
+% --- Package Documentation: --------------------------------------------------
+% 
+% This package provides the \makecover macro for creating the outer coverpage.
+% 
+% The basic usage is to define the title and subtitle using the \title and
+% \subtitle macros followed by a call to the \makecover macro:
+% 
+%   \title{An Important Topic Worth Writing About}
+%   \subtitle{A Very Important Report}
+%   \makecover
+%
+% Since the \title and \subtitle macros are shared along with the inner title
+% page,users wanting to set these separately should specify an optional
+% argument to them as follows:
+%
+%   \title[Different Cover Title]{An Important Topic Worth Writing About}
+%   \subtitle[Different Cover Subtitle]{A Very Important Report}
+%   \makecover
+%   \maketitle
+% 
+% The cover page can be changed from the default dark theme by passing the
+% theme=light keyword argument. The light theme is meant for light background
+% images and will change the white logo and text to black:
+%
+%   \title{An Important Topic Worth Writing About}
+%   \subtitle{A Very Important Report}
+%   \makecover[theme=light]
+% 
+% Optional Keyword Arguments:
+%   theme (string): Sets the theme of the cover page. Defaults to dark.
+%   fill opacity (number): Sets the opacity of the header fill which can help
+%       to increase the contrast of the title text against certain backgrounds.
+%       Defaults to 0.3.
+%   image scale (number): Scales the background image. Defaults to 1.
+%   image angle (number): Sets the counter-clockwise rotation in degrees 
+%       of the image. Defaults to 0 (deg).
+%   image xshift (length): Shifts the image toward the right. Defaults to 0 pt.
+%   image yshift (length): Shifts the image up. Defaults to 0 pt.
+%   image file (string): Filepath to the image file. Defaults to \relax (None)
+%       which makes the macro use the cover image defined by the theme.
+%
+% -----------------------------------------------------------------------------
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{tudelft-light/cover}[2018/02/08 TU Delft Light Report Class]
+
+\RequirePackage{tikz}
+\RequirePackage{calc}
+\RequirePackage{xkeyval}  % Needed for options to the \makecover macro
+\RequirePackage{graphicx}
+\RequirePackage{fontspec}
+\RequirePackage[us]{datetime}
+\RequirePackage{tudelft-light/style}  % Requires house style fonts and colors
+
+\usetikzlibrary{calc, positioning, fit}
+
+% --- Definition of Cover Page Lengths: ---------------------------------------
+\newlength{\@coverimage@xshift}
+\newlength{\@coverimage@yshift}
+\setlength{\@coverimage@xshift}{0pt}
+\setlength{\@coverimage@yshift}{0pt}
+
+\newlength{\@cover@margin}
+\setlength{\@cover@margin}{3pc} % 3 picas is default margin of Adobe InDesign
+
+% --- Static Style & Layout the Cover page: -----------------------------------
+\tikzstyle{bg_image} = [
+    rectangle,
+    anchor=center,
+    inner sep=0pt,
+    outer sep=0pt,
+]
+
+% Increases text contrast with a darkened background
+\tikzstyle{header_fill} = [
+    rectangle,
+    fill=tudelft-black,
+    anchor=north west,
+    outer sep=0pt,
+    inner sep=12pt,
+]
+
+\tikzstyle{title} = [
+    rectangle,
+    text width={\paperwidth - 2\@cover@margin},
+    minimum width=\paperwidth,
+    anchor=north west,
+    font=\tudtitlefamily\fontsize{72}{65}\selectfont,
+    outer sep=0pt,
+    inner sep=0pt,
+    yshift=-1.2\@cover@margin,
+]
+
+\tikzstyle{subtitle} = [
+    rectangle,
+    text width={\paperwidth - 2\@cover@margin)},
+    minimum width=\paperwidth,
+    anchor=north west,
+    font=\tudsffamily\fontsize{14}{16.8}\selectfont,
+    inner sep=0pt,
+    outer sep=0pt,
+    xshift=0.334pc,  % Aligns the left side of the text with the title
+    yshift=-0.75\@cover@margin,
+]
+
+\tikzstyle{date} = [
+    rectangle,
+    text width={\paperwidth - 2\@cover@margin},
+    minimum width=\paperwidth,
+    anchor=north west,
+    font=\tudsffamily\fontsize{12}{14.4}\color{tudelft-cyan}\selectfont,
+    inner sep=0pt,
+    outer sep=0pt,
+    yshift=-6pt,
+]
+
+\tikzstyle{tu_logo} = [
+    rectangle,
+    anchor=south east,
+    xshift=-\@cover@margin,
+    yshift=\@cover@margin,
+]
+
+% Formats the date as MONTH DAY^{ORDINAL}, YEAR
+\newdateformat{@cover@usordate}{%
+    \monthname[\THEMONTH] \ordinaldate{\THEDAY}, \THEYEAR
+}
+
+% --- Definition of \makecover macro: -----------------------------------------
+\define@choicekey*{cover}{theme}[\val\nr]{light, dark}{
+    \ifcase\nr\relax
+        % Light Theme Setup
+        \def\@cover@textcolor{tudelft-black}
+        \def\@cover@logo{tudelft-light/images/logo_black.pdf}
+        \def\@coverimage@defaultfile{tudelft-light/images/background_light.pdf}
+    \or
+        % Dark Theme Setup
+        \def\@cover@textcolor{tudelft-white}
+        \def\@cover@logo{tudelft-light/images/logo_white.pdf}
+        \def\@coverimage@defaultfile{tudelft-light/images/background_dark.pdf}
+    \fi
+}
+\define@key{cover}{fill opacity}{\def\@cover@fillOpacity{#1}}
+\define@key{cover}{image scale}{\def\@coverimage@scale{#1}}
+\define@key{cover}{image angle}{\def\@coverimage@angle{#1}}
+\define@key{cover}{image xshift}{\setlength{\@coverimage@xshift}{#1}}
+\define@key{cover}{image yshift}{\setlength{\@coverimage@yshift}{#1}}
+\define@key{cover}{image file}{\def\@coverimage@file{#1}}
+
+% Setting the default arguments so the user does not have to pass any
+\setkeys{cover}{
+    theme=dark,
+    fill opacity=0.3,
+    image scale=1,
+    image angle=0,
+    image xshift=0pt,
+    image yshift=0pt,
+    image file=\relax,  % \relax = None, Default image is specified by theme
+}
+
+\newcommand*{\makecover}[1][]{
+    \setkeys{cover}{#1} % Parses user specified optional keyword arguments
+    \begingroup
+        \thispagestyle{empty}
+
+        \pgfdeclarelayer{background}
+        \pgfdeclarelayer{assets}
+        \pgfsetlayers{background, assets, main}
+
+        \begin{tikzpicture}[remember picture,overlay]
+          
+            % Main layer contains all text
+            \begin{pgfonlayer}{main}
+                \node (title) [
+                        title,
+                        text=\@cover@textcolor,
+                    ] at (current page.north west) {
+                    \ifx\@cover@title\undefined
+                        \@title
+                    \else
+                        \@cover@title
+                    \fi
+                };
+                \node (subtitle) [
+                        subtitle,
+                        text=\@cover@textcolor,
+                    ] at (title.south west) {
+                    \ifx\@cover@subtitle\undefined
+                        \@subtitle
+                    \else
+                        \@cover@subtitle
+                    \fi
+                };
+                \node (date) [date] at (subtitle.south west) {
+                    \@cover@usordate\today
+                };
+            \end{pgfonlayer}
+
+            % Assets layer contains all logos and shapes
+            \begin{pgfonlayer}{assets}
+                \node (header_fill) [
+                    header_fill,
+                    fill opacity=\@cover@fillOpacity,
+                    % Fitting all text elements inside the header, the `inner
+                    % sep` of the header_fill style will ensure we have an
+                    % equal margin on all sides
+                    fit={
+                        (current page.north west)
+                        (title.south east)
+                        (subtitle)
+                        (date)
+                    }
+                ] {};
+
+                \node (tu_logo) [tu_logo] at (current page.south east) {
+                    \includegraphics[width=3.5cm]{\@cover@logo}
+                };
+
+            \end{pgfonlayer}
+
+            % Background layer is for the image file only
+            \begin{pgfonlayer}{background}
+                \node [
+                    bg_image,
+                    xshift=\@coverimage@xshift,
+                    yshift=\@coverimage@yshift,
+                ] at (current page.center) {
+                    \includegraphics[
+                        scale=\@coverimage@scale,
+                        keepaspectratio,
+                        origin=c,
+                        angle=\@coverimage@angle,
+                    ]{
+                        \if\@coverimage@file\relax
+                            % No user-specified image, use the default file
+                            % specified by the theme
+                            \@coverimage@defaultfile
+                        \else
+                            % Use the user-specified file path
+                            \@coverimage@file
+                        \fi
+                    }
+                };
+            \end{pgfonlayer}
+
+        \end{tikzpicture}
+        \cleardoublepage
+    \endgroup
+}
