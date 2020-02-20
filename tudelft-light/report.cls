@@ -71,8 +71,15 @@
         \ifthenelse{\equal{#1}{A}}{Abbreviations}{}}}}}%
     ]}
 
-%Renames Nomenclature to List of Symbols
+% Renames Nomenclature to List of Symbols
 \renewcommand{\nomname}{List of Symbols}
+
+% Formats the units of the nomenclature
+\newcommand{\nomunit}[1]{%
+    \renewcommand{\nomentryend}{%
+        \hspace*{\fill}\si{#1}%
+    }
+}
 
 %\\\\\\\\\\ Plot Configuration \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 \pgfplotsset{compat=1.16} % Setting compatibility for PGF Plots
