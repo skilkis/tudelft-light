@@ -1,10 +1,42 @@
-% Refer to: https://www.overleaf.com/learn/latex/Writing_your_own_class
+% -----------------------------------------------------------------------------
+%
+% Copyright (c) 2020. San Kilkis. All rights reserved.
+% 
+% This Source Code Form is subject to the terms of the Mozilla Public
+% License, v. 2.0. If a copy of the MPL was not distributed with this
+% file, You can obtain one at http://mozilla.org/MPL/2.0/
+%
+% --- Class Documentation: ----------------------------------------------------
+% 
+% This package provides the tudelft-light/report class for use with XeLaTeX.
+% 
+% The document class is based on the report class from the LaTeX Std. Lib.
+% For a full list of available document options refer to: 
+% https://en.wikibooks.org/wiki/LaTeX/Document_Structure
+%
+% Optional Keyword Arguments:
+%   fancyheader (bool): Turns the fancy header On/Off.
+%
+% Note:
+%   To make it easier to navigate the code, several subpackages have been
+%   created which can be summarized as follows:
+%
+%       * packages.sty: Contains all package imports necessary for the class
+%       * style.sty: Contains style definitions such as color and fonts
+%       * setup.sty: Contains macros for document metadata setup
+%       * cover.sty: Contains the \makecover macro for the outer cover page
+%       * title.sty: Containts the \maketitle macro for the inner title page
+%       * macros.sty: Contains custom macros and environments.
+%
+% -----------------------------------------------------------------------------
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{tudelft-light/report}[2018/02/08 TU Delft Light Report Class]
 
-%\\\\\\\\\\\ Class Options \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\RequirePackage{iftex}
+\RequireXeTeX % Raises error if not compiling with XeLaTeX
  
+% --- Class Options: ----------------------------------------------------------
 \RequirePackage{kvoptions}
 
 % Simplifying family name, otherwise it would be tudelft-light/report
@@ -21,8 +53,7 @@
 
 \LoadClass{report}
 
-%\\\\\\\\\\\ Importing Custom Packages \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
+% --- Importing TU Delft Light Packages: --------------------------------------
 \RequirePackage{tudelft-light/packages}
 \RequirePackage{tudelft-light/style}
 \RequirePackage{tudelft-light/setup}
@@ -30,8 +61,7 @@
 \RequirePackage{tudelft-light/title}
 \RequirePackage{tudelft-light/macros}
 
-%\\\\\\\\\\\ Document Layout & Title Margins \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
+% --- Document Layout & Title Margins: ----------------------------------------
 \titlespacing*{\chapter}{0pt}{-25pt}{10pt}
 \definecolor{gray75}{gray}{0}
 \newcommand{\hsp}{\hspace{3pt}}
@@ -42,8 +72,7 @@
 
 \setlength{\parindent}{0cm} % No indent on paragraphs
 
-%\\\\\\\\\\ Header & Footnote Configuration \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
+% --- Header & Footnote Configuration: ----------------------------------------
 % Uses the truncate package to crop long section and chapter titles
 % Once the specified width is exceeded the title is split, the left
 % portion is kept, and `...' dots are appended to the end
@@ -59,8 +88,7 @@
 % Footnote style Roman numerals
 \renewcommand{\thefootnote}{\roman{footnote}}
 
-%\\\\\\\\\\ Nomenclature Categories and Configuration \\\\\\\\\\\\\\\\\\\\\\\\\
-
+% --- Nomenclature Categories and Configuration: ------------------------------
 \makenomenclature
 
 \renewcommand\nomgroup[1]{%
@@ -82,11 +110,10 @@
     }
 }
 
-%\\\\\\\\\\ Plot Configuration \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+% --- Plot Configuration: -----------------------------------------------------
 \pgfplotsset{compat=1.16} % Setting compatibility for PGF Plots
 
-%\\\\\\\\\\ Table Spacing & Layout Parameters \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
+% --- Table Spacing & Layout Parameters: --------------------------------------
 \renewcommand{\arraystretch}{1.2}
 \newcolumntype{C}{>{\small\centering\arraybackslash}X} %For tabularX
 \newcolumntype{L}{>{\small\raggedright\arraybackslash}X} %For tabularX
@@ -98,12 +125,10 @@
 \setlength\dashlinegap{1.5pt}
 \setlength\arrayrulewidth{0.3pt}
 
-%\\\\\\\\\\ Math Configuration \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
+% --- Math Configuration: -----------------------------------------------------
 % Removes Parenthesis around Equation labels
 \creflabelformat{equation}{#2\textup{#1}#3}
 
-%\\\\\\\\\\ Biblography Configuration \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
+% --- Biblography Configuration: ----------------------------------------------
 \addbibresource{references.bib} %Bibliography File
 \newcommand{\BibliographyName}{References} %Name of Biblography
