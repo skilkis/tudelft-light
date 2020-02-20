@@ -1,0 +1,110 @@
+% -----------------------------------------------------------------------------
+%
+% Copyright (c) 2020. San Kilkis. All rights reserved.
+% 
+% This Source Code Form is subject to the terms of the Mozilla Public
+% License, v. 2.0. If a copy of the MPL was not distributed with this
+% file, You can obtain one at http://mozilla.org/MPL/2.0/
+%
+% --- Package Documentation: --------------------------------------------------
+% 
+% This package redefines the \maketitle macro for creating the inner titlepage.
+% 
+% The basic usage is to define the title and subtitle using the \title and
+% \subtitle macros followed by a call to the \maketitle macro:
+% 
+%   \title{An Important Topic Worth Writing About}
+%   \subtitle{A Very Important Report}
+%   \author{John Doe | 0000001, Jane Doe | 0000002}
+%   \course{[TU0000] A Very Futuristic and Challenging Course}
+%   \supervisor{Dr. Jan Jansen}
+%   \abstract{A summary of the document}
+%   \maketitle
+%
+% Note:
+%   The calls to \course and \abstract are optional. However, make sure to
+%   call \maketitle within a document environment i.e. after calling
+%   \begin{document}
+%
+% -----------------------------------------------------------------------------
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{tudelft-light/title}
+
+\RequirePackage{tudelft-light/cover}
+\RequirePackage{tudelft-light/style}
+
+\newcommand{\@title@printauthor}{
+    % Formats and prints the author(s) supplied by the \author macro.
+
+    \foreachitem \x \in \@author@items{
+        \setsepchar{{|}}%
+        \readlist*\splitlist{\x}
+        \ifnum \splitlistlen=2%
+            % Author [1] was supplied with a Student Number [2]
+        \splitlist[1] \begingroup\color{gray}{\splitlist[2]}\endgroup\\%
+        \else%
+            % No student number provided
+        \splitlist[1]\\%
+        \fi
+    }
+}
+
+\newcommand{\@title@printsupervisor}{
+    % Formats and prints the supervisor(s) supplied by the \supervisor macro.
+
+    \foreachitem \x \in \@supervisor@items{\x\\}
+}
+
+\renewcommand*{\maketitle}{
+    \newgeometry{margin=6pc} %Change Title-Page Margin Differently
+        \begin{titlepage}
+            \begin{center}
+
+            \textsc{\LARGE Delft University of Technology}\\[0.25cm]
+
+            % Optional course code and name
+            \ifx\@course\undefined\else%
+                \textsc{\normalsize\@course}\\[1.5cm]
+            \fi
+
+            % TU Delft Seal Logo
+            \includegraphics[width=0.25\textwidth]{%
+                tudelft-light/images/delft_seal.pdf%
+            }\\[1.5cm]
+
+            % Ttitle and subtitle
+            {\huge \bfseries \@title} \\
+            \huge  \@subtitle \\[1.0cm]
+
+            % Supervisor and author split minipage
+            \begin{minipage}[t]{0.4\textwidth}
+                \begin{flushleft}
+                    \large \emph{Supervisors:}\\
+                        Dr. John Doe\\
+                \end{flushleft}
+            \end{minipage}
+            \begin{minipage}[t]{0.4\textwidth}
+                \begin{flushright}
+                    \large \emph{Authors:}\\
+                    \@title@printauthor
+                \end{flushright}
+            \end{minipage}%
+            \\[2.0cm]
+
+            % Creating abstract on title page if defined with \abstract
+            \ifx \@abstract\undefined\else
+                \large \textsc{Abstract}\\
+                \begin{minipage}[t]{0.8\textwidth}
+                    \large\@abstract
+                \end{minipage}
+            \fi
+
+            \vfill
+
+            \small{\today}
+
+        \end{center}
+    \end{titlepage}
+    \restoregeometry
+}
