@@ -1,4 +1,16 @@
-% Refer to: https://www.overleaf.com/learn/latex/Writing_your_own_package
+% -----------------------------------------------------------------------------
+%
+% Copyright (c) 2020. San Kilkis. All rights reserved.
+% 
+% This Source Code Form is subject to the terms of the Mozilla Public
+% License, v. 2.0. If a copy of the MPL was not distributed with this
+% file, You can obtain one at http://mozilla.org/MPL/2.0/
+%
+% --- Package Documentation: --------------------------------------------------
+% 
+% Defines all packages required by the tudelft-light/report document class.
+%
+% -----------------------------------------------------------------------------
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{tudelft-light/packages}
@@ -13,6 +25,8 @@
 \RequirePackage[super]{nth}
 \RequirePackage{graphicx}
 \RequirePackage{tikz}
+\RequirePackage{calc}
+\RequirePackage{fontspec}
 \RequirePackage{pgfplots}
 \RequirePackage{datatool}
 \RequirePackage{tabularx}
@@ -40,6 +54,9 @@
 \RequirePackage{arydshln} % Used for adding dashlines in arrays \hdashline
 \RequirePackage{tablefootnote} % Put footnotes in tables
 \RequirePackage[intoc]{nomencl}
+\RequirePackage[us]{datetime}
+\RequirePackage{xkeyval} % Needed for optional keyword arguments to macros
+\RequirePackage{listofitems} % Allows creation of list from delimited string
 
 % Automated Referencing: WARNING HAS TO BE LOADED AFTER hyperref
 \RequirePackage[capitalise, noabbrev, nameinlink]{cleveref}
