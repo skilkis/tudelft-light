@@ -1,4 +1,4 @@
-# Light TU Delft Report Template
+# ![LightLogo](/tudelft-light/images/header_logo.svg)
 
 Lightweight LaTeX Template for TU-Delft assignments and reports.
 
