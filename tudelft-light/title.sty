@@ -34,9 +34,38 @@
 \RequirePackage{tudelft-light/cover}
 \RequirePackage{tudelft-light/style}
 
-\newcommand{\@title@printauthor}{
-    % Formats and prints the author(s) supplied by the \author macro.
+\newcommand*{\@title@makeplural}[2][\relax]{%
+    % Makes the supplied word plural by adding an "s" suffix to it
+    %
+    % This macro is useful for adding a plural to the supervisor and author
+    % headings if the number of items. If the optional number of arguments is
+    % passed then this will be used as a condition for applying the suffix.
+    % The intended usage of the macro with the supplied optional argument
+    % is given below
+    %
+    %   \makeplural[\@author@itemslen]{Author}
+    % 
+    % Optional Arguments:
+    %   1 (number): Number of items used to conditionally make the word plural
+    %
+    % Positional Arguments:
+    %   2 (string): Sets the subtitle of the document (Stored in PDF subject)
+    %
+    % Returns:
+    %   (string): The provided string with the suffix "s" applied
+    % 
+    \if #1\relax
+        % If no optional argument is provided make it plural
+        #2s%
+    \else
+        % Otherwise check if it needs to be made plural
+        \ifnum #1<2 #2\else#2s\fi
+    \fi%
+}
 
+\newcommand*{\@title@printauthor}{%
+    % Formats and prints the author(s) supplied by the \author macro.
+    \large\emph{\@title@makeplural[\@author@itemslen]{Author}:} \\
     \foreachitem \x \in \@author@items{
         \setsepchar{{|}}%
         \readlist*\splitlist{\x}
@@ -50,9 +79,9 @@
     }
 }
 
-\newcommand{\@title@printsupervisor}{
+\newcommand*{\@title@printsupervisor}{%
     % Formats and prints the supervisor(s) supplied by the \supervisor macro.
-
+    \large\emph{\@title@makeplural[\@supervisor@itemslen]{Supervisor}:} \\
     \foreachitem \x \in \@supervisor@items{\x\\}
 }
 
@@ -82,13 +111,11 @@
             % Supervisor and author split minipage
             \begin{minipage}[t]{0.4\textwidth}
                 \begin{flushleft}
-                    \large \emph{Supervisors:}\\
-                        Dr. John Doe\\
+                    \@title@printsupervisor
                 \end{flushleft}
             \end{minipage}
             \begin{minipage}[t]{0.4\textwidth}
                 \begin{flushright}
-                    \large \emph{Authors:}\\
                     \@title@printauthor
                 \end{flushright}
             \end{minipage}%
