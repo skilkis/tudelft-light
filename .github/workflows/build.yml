@@ -1,11 +1,12 @@
-name: Release LaTeX Document
+name: build
 on:
   push:
-    tags:
-      - "v*"
+  pull_request:
+    branches:
+      - master
 
 jobs:
-  build:
+  compile:
     runs-on: ubuntu-latest
     steps:
       - name: Clone Git Repository
@@ -18,13 +19,31 @@ jobs:
           root_file: main.tex
           latexmk_use_xelatex: true
           latexmk_shell_escape: true
-          extra_system_packages: "py-pygments"
+          extra_system_packages: "py-pygments" # Needed for the minted package
       - name: Upload PDF(s) as an Artifact
         uses: actions/upload-artifact@v2
         with:
           name: docs
-          path: "*.pdf"
+          path: "main.pdf"
           if-no-files-found: error
+
+  release:
+    needs: compile
+    runs-on: ubuntu-latest
+    if: contains(github.ref, "/tags/v*.*.*")
+    steps:
+      - name: Clone Git Repository
+        uses: actions/checkout@v2
+        with:
+          submodules: true
+      - uses: actions/download-artifact@v2
+        id: Download PDF
+        with:
+          name: "docs"
+      - name: "Echo Download Path"
+        run: |
+          echo ${{steps.download.outputs.download-path}}
+          ls
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
