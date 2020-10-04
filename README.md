@@ -8,7 +8,7 @@ A lightweight LaTeX Template for TU-Delft assignments and reports.
 
 | Dark Theme | Light Theme |
 | --- | --- |
-| <img src="./docs/static/cover_dark.svg" width="450px"> | <img src="./docs/static/cover_light.svg" width="450px">
+| <img src="./docs/static/cover_dark.png" width="450px"> | <img src="./docs/static/cover_light.png" width="450px">
 
 The cover pages above can be created quickly with only a single command!
 
