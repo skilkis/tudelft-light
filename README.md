@@ -1,5 +1,7 @@
 # ![LightLogo](./docs/static/header_logo.svg)
 
+![build](https://github.com/skilkis/tudelft-light/workflows/build/badge.svg)
+
 A lightweight XeLaTeX Template for TU-Delft assignments and reports.
 
 ## Installation
