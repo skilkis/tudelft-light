@@ -25,9 +25,9 @@ jobs:
         shell: bash
         run: |
           conda env update
-          conda init bash
       - name: Activate tudelft-light Environment and Compile
         shell: bash
         run: |
+          eval "$(conda shell.bash hook)"
           conda activate tudelft-light
           tectonic main.tex
