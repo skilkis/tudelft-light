@@ -48,7 +48,7 @@ jobs:
       - name: ZIP tudeft-light Template
         run: |
           sudo apt install zip
-          zip -r tudelft-light.zip tudelft-light
+          zip -r template.zip tudelft-light
       - name: Upload tudeft-light to Release
         id: upload-zip-asset
         uses: actions/upload-release-asset@v1
@@ -56,6 +56,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: tudelft-light.zip
-          asset_name: tudelft-light.zip
+          asset_path: template.zip
+          asset_name: template.zip
           asset_content_type: application/zip
