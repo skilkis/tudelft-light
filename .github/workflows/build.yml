@@ -1,0 +1,92 @@
+name: build
+on:
+  push:
+  pull_request:
+    branches:
+      - master
+
+env:
+  # LaTeX root (main) filepath without file-extension
+  root_file: main
+  artifact_name: docs
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone Git Repository
+        uses: actions/checkout@v2
+        with:
+          submodules: true
+      - name: Compile LaTeX Document
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: ${{ env.root_file }}.tex
+          latexmk_use_xelatex: true
+          latexmk_shell_escape: true
+          extra_system_packages: "py-pygments" # Needed for the minted package
+      - name: Upload PDF(s) as an Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ env.artifact_name }}
+          path: ${{ env.root_file }}.pdf
+          if-no-files-found: error
+
+  release:
+    needs: compile
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+    steps:
+      - name: Clone Git Repository
+        uses: actions/checkout@v2
+        with:
+          submodules: true
+
+      - name: Download PDF
+        uses: actions/download-artifact@v2
+        id: download
+        with:
+          name: ${{ env.artifact_name }}
+
+      - name: Parse Changelog
+        id: changelog
+        uses: denisa/clq-action@v1.0.2
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ steps.changelog.outputs.name }}
+          body: ${{ steps.changelog.outputs.changes }}
+          draft: false
+          prerelease: ${{ steps.changelog.outputs.status == 'prereleased' }}
+  
+      - name: Upload PDF to Release
+        id: upload-pdf-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ env.root_file }}.pdf
+          asset_name: ${{ env.root_file }}.pdf
+          asset_content_type: application/pdf
+
+      - name: ZIP tudelft-light Template
+        run: |
+          sudo apt install zip
+          zip -r template.zip tudelft-light
+
+      - name: Upload tudeft-light to Release
+        id: upload-zip-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: template.zip
+          asset_name: template.zip
+          asset_content_type: application/zip
