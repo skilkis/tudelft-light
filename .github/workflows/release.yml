@@ -24,4 +24,5 @@ jobs:
       - name: Do Something
         run: |
           conda env create
+          conda init
           conda activate tudelft-light
