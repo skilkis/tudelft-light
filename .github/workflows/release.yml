@@ -22,4 +22,9 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install tudelft-light dependencies
-        run: conda env update
+        run: |
+          conda env update
+      - name: Activate tudelft-light Environment and Compile
+        run: |
+          source $CONDA/bin/activate thesis
+          tectonic main.tex
