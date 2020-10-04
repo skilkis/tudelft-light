@@ -1,5 +1,0 @@
-name: tudelft-light
-dependencies:
-  - python=3.7
-  - conda-forge::tectonic
-  - pygments
