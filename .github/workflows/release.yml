@@ -1,12 +1,13 @@
 name: Release
 
-on: [push]
+on:
+  [push]
   # push:
   #   # Sequence of patterns matched against refs/tags
   #   branches:
   #     - master
-    # tags:
-    #   - "v*" # Push events to matching v*, i.e. v1.0, v20.15.10
+  # tags:
+  #   - "v*" # Push events to matching v*, i.e. v1.0, v20.15.10
 
 jobs:
   build:
@@ -32,7 +33,7 @@ jobs:
           conda --version
           which python
       - name: Install & Activate Tectonic Environment
-      - run: |
+        run: |
           conda env create
           conda env activate tudelft-light
       - name: Compile PDF with Tectonic
