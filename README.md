@@ -1,6 +1,13 @@
 # ![LightLogo](./docs/static/header_logo.svg)
 
-A lightweight LaTeX Template for TU-Delft assignments and reports.
+A lightweight XeLaTeX Template for TU-Delft assignments and reports.
+
+## Installation
+
+This template can be used right away by either downloading the released files
+or by embedded the template itself as a Git submodule. For the latter, a
+`.gitmodules` file can be defined as explained by the instructions in the
+submodule [README](./tudelft-light/README.md).
 
 ## Highlights
 
