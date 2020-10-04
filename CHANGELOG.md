@@ -5,6 +5,25 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog], and this project adheres to
 [Semantic Versioning].
 
+## [2.1.0] - 2020-10-05
+
+### Added
+
+- SVG logo to the README as well as improved it with highlights and pictures
+- Ability to automatically compile the template and create releases on tagged
+  commits
+- Automated plural suffix addition to the "Author" and "Supervisro" words
+  in the inner title page
+
+### Changed
+
+- `tudelft-light` directory into a submodule to make it easier to embed
+  a minimal template into other Git repositories
+
+### Fixed
+
+- Hardcoded supervisor name (Issue #14)
+
 ## [2.0.0] - 2020-02-20
 
 An overhauled version that greatly increases usability. You can now generate
