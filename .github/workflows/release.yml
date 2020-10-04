@@ -35,7 +35,7 @@ jobs:
           release_name: Release ${{ github.ref }}
           draft: false
           prerelease: false
-      - name: Upload Release Asset
+      - name: Upload PDF to Release
         id: upload-release-asset
         uses: actions/upload-release-asset@v1
         env:
@@ -45,3 +45,17 @@ jobs:
           asset_path: main.pdf
           asset_name: main.pdf
           asset_content_type: application/pdf
+      - name: ZIP tudeft-light Template
+        run: |
+          sudo apt install zip
+          zip -r tudelft-light.zip tudelft-light
+      - name: Upload tudeft-light to Release
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: tudelft-light.zip
+          asset_name: tudelft-light.zip
+          asset_content_type: application/zip
