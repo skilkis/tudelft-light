@@ -36,8 +36,9 @@ jobs:
         uses: actions/checkout@v2
         with:
           submodules: true
+      - name: Download PDF
       - uses: actions/download-artifact@v2
-        id: Download PDF
+        id: download
         with:
           name: "docs"
       - name: "Echo Download Path"
