@@ -21,8 +21,7 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Do Something
-        run: |
-          conda env create
-          conda init
+      - name: Create Conda Environment
+        run: conda env create
+      - name: Activate tudelft-light Environment
           conda activate tudelft-light
