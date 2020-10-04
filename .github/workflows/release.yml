@@ -25,6 +25,8 @@ jobs:
         run: |
           conda env update
       - name: Activate tudelft-light Environment and Compile
+        shell: bash
         run: |
-          source $CONDA/bin/activate thesis
+          conda init bash
+          conda activate tudelft-light
           tectonic main.tex
