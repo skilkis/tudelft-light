@@ -1,5 +1,9 @@
-name: Build LaTeX document
-on: [push]
+name: Release LaTeX Document
+on:
+  push:
+    tags:
+      - "v*"
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -8,14 +12,35 @@ jobs:
         uses: actions/checkout@v2
         with:
           submodules: true
-      - name: Compile LaTeX document
+      - name: Compile LaTeX Document
         uses: xu-cheng/latex-action@v2
         with:
           root_file: main.tex
           latexmk_use_xelatex: true
           latexmk_shell_escape: true
           extra_system_packages: "py-pygments"
-      - name: Upload PDF as Artifact
+      - name: Upload PDF(s) as an Artifact
         uses: actions/upload-artifact@v2
         with:
-          path: main.pdf
+          name: docs
+          path: "*.pdf"
+          if-no-files-found: error
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - name: Upload Release Asset
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: main.pdf
+          asset_content_type: application/pdf
