@@ -51,6 +51,8 @@ jobs:
       - name: Parse Changelog
         id: changelog
         uses: denisa/clq-action@v1.0.2
+        with:
+          mode: feature
 
       - name: Create Release
         id: create_release
@@ -63,7 +65,7 @@ jobs:
           body: ${{ steps.changelog.outputs.changes }}
           draft: false
           prerelease: ${{ steps.changelog.outputs.status == 'prereleased' }}
-  
+
       - name: Upload PDF to Release
         id: upload-pdf-asset
         uses: actions/upload-release-asset@v1
