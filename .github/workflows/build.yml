@@ -5,6 +5,11 @@ on:
     branches:
       - master
 
+env:
+  # LaTeX root (main) filepath without file-extension
+  root_file: main
+  artifact_name: docs
+
 jobs:
   compile:
     runs-on: ubuntu-latest
@@ -16,15 +21,15 @@ jobs:
       - name: Compile LaTeX Document
         uses: xu-cheng/latex-action@v2
         with:
-          root_file: main.tex
+          root_file: ${{ env.root_file }}.tex
           latexmk_use_xelatex: true
           latexmk_shell_escape: true
           extra_system_packages: "py-pygments" # Needed for the minted package
       - name: Upload PDF(s) as an Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: docs
-          path: "main.pdf"
+          name: ${{ env.artifact_name }}
+          path: ${{ env.root_file }}.pdf
           if-no-files-found: error
 
   release:
@@ -40,11 +45,7 @@ jobs:
         uses: actions/download-artifact@v2
         id: download
         with:
-          name: "docs"
-      - name: "Echo Download Path"
-        run: |
-          echo ${{steps.download.outputs.download-path}}
-          ls
+          name: ${{ env.artifact_name }}
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -62,10 +63,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: main.pdf
-          asset_name: main.pdf
+          asset_path: ${{ env.root_file }}.pdf
+          asset_name: ${{ env.root_file }}.pdf
           asset_content_type: application/pdf
-      - name: ZIP tudeft-light Template
+      - name: ZIP tudelft-light Template
         run: |
           sudo apt install zip
           zip -r template.zip tudelft-light
