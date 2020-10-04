@@ -1,6 +1,6 @@
-# ![LightLogo](/tudelft-light/images/header_logo.svg)
+# ![LightLogo](./docs/static/header_logo.svg)
 
-Lightweight LaTeX Template for TU-Delft assignments and reports.
+A lightweight LaTeX Template for TU-Delft assignments and reports.
 
 ## Sample References
 
