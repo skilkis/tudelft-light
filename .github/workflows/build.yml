@@ -1,9 +1,9 @@
 name: build
 on:
   push:
-  pull_request:
     branches:
       - master
+  pull_request:
 
 env:
   # LaTeX root (main) filepath without file-extension
@@ -48,9 +48,18 @@ jobs:
         with:
           name: ${{ env.artifact_name }}
 
-      - name: Parse Changelog
+      - name: Get Tag
+        id: tag
+        # Using Bash expansion to retrieve the version without the "v" prefix
+        run: |
+          echo ::set-output name=version::${GITHUB_REF#refs/tags/v}
+
+      - name: Get Changelog Entry
         id: changelog
-        uses: denisa/clq-action@v1.0.2
+        uses: mindsers/changelog-reader-action@v2
+        with:
+          version: ${{ steps.tag.outputs.version }}
+          path: ./CHANGELOG.md
 
       - name: Create Release
         id: create_release
@@ -58,12 +67,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          # The correct tag here should use the GitHub ref
           tag_name: ${{ github.ref }}
-          release_name: ${{ steps.changelog.outputs.name }}
+          release_name: Release ${{ steps.changelog.outputs.version }}
           body: ${{ steps.changelog.outputs.changes }}
-          draft: false
-          prerelease: ${{ steps.changelog.outputs.status == 'prereleased' }}
-  
+          prerelease: ${{ steps.changelog_reader.outputs.status == 'prereleased' }}
+          draft: ${{ steps.changelog_reader.outputs.status == 'unreleased' }}
+
       - name: Upload PDF to Release
         id: upload-pdf-asset
         uses: actions/upload-release-asset@v1
