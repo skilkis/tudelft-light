@@ -12,7 +12,7 @@ The format is based on [Keep a Changelog], and this project adheres to
 - SVG logo to the README as well as improved it with highlights and pictures
 - Ability to automatically compile the template and create releases on tagged
   commits
-- Automated plural suffix addition to the "Author" and "Supervisro" words
+- Automated plural suffix addition to the "Author" and "Supervisor" words
   in the inner title page
 
 ### Changed

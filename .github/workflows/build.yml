@@ -1,9 +1,9 @@
 name: build
 on:
   push:
-  pull_request:
     branches:
       - master
+  pull_request:
 
 env:
   # LaTeX root (main) filepath without file-extension
@@ -50,6 +50,7 @@ jobs:
 
       - name: Get Tag
         id: tag
+        # Using Bash expansion to retrieve the version without the "v" prefix
         run: |
           echo ::set-output name=version::${GITHUB_REF#refs/tags/v}
 
@@ -66,6 +67,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          # The correct tag here should use the GitHub ref
           tag_name: ${{ github.ref }}
           release_name: Release ${{ steps.changelog.outputs.version }}
           body: ${{ steps.changelog.outputs.changes }}
