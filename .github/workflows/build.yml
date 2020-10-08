@@ -57,8 +57,7 @@ jobs:
         id: changelog
         uses: mindsers/changelog-reader-action@v2
         with:
-          validation_depth: 10
-          version: ${{ steps.changelog.outputs.version }}
+          version: ${{ steps.tag.outputs.version }}
           path: ./CHANGELOG.md
 
       - name: Create Release
@@ -67,8 +66,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.changelog.outputs.version }}
-          release_name: \[${{ steps.changelog.outputs.date }}\] - ${{ steps.changelog.outputs.version }}
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ steps.changelog.outputs.version }}
           body: ${{ steps.changelog.outputs.changes }}
           prerelease: ${{ steps.changelog_reader.outputs.status == 'prereleased' }}
           draft: ${{ steps.changelog_reader.outputs.status == 'unreleased' }}
