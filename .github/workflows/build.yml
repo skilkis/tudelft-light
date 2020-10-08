@@ -51,7 +51,7 @@ jobs:
       - name: Get Tag
         id: tag
         run: |
-          echo ::set-output name=version::${github.ref#refs/tags/v}
+          echo ::set-output name=version::${GITHUB_REF#refs/tags/v}
 
       - name: Get Changelog Entry
         id: changelog
