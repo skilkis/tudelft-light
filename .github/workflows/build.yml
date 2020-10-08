@@ -48,12 +48,17 @@ jobs:
         with:
           name: ${{ env.artifact_name }}
 
+      - name: Get Tag
+        id: tag
+        run: |
+          echo ::set-output name=version::${github.ref#refs/tags/v}
+
       - name: Get Changelog Entry
         id: changelog
         uses: mindsers/changelog-reader-action@v2
         with:
           validation_depth: 10
-          version: ${{ github.ref }}
+          version: ${{ steps.changelog.outputs.version }}
           path: ./CHANGELOG.md
 
       - name: Create Release
@@ -62,7 +67,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
+          tag_name: ${{ steps.changelog.outputs.version }}
           release_name: \[${{ steps.changelog.outputs.date }}\] - ${{ steps.changelog.outputs.version }}
           body: ${{ steps.changelog.outputs.changes }}
           prerelease: ${{ steps.changelog_reader.outputs.status == 'prereleased' }}
