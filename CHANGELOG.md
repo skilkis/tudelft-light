@@ -5,6 +5,23 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog], and this project adheres to
 [Semantic Versioning].
 
+## [2.2.0] - 2020-12-01
+
+### Added
+
+- `title fontsize` option to the `\makecover` macro to allow users to
+  format the cover page title font size (Issue #23)
+- Remove hyphenation from cover page title text using the `hyphenat` package
+- `title fontsize` argument to the [README] `\makecover` example
+
+### Changed
+
+- Bumped version of `tudelft-light-template` to [c2c6bcb]
+
+### Fixed
+
+- Grammar mistake in the Inner Title Page section of the [README]
+
 ## [2.1.0] - 2020-10-05
 
 ### Added
@@ -91,3 +108,4 @@ awesome cover pages and title pages easily!
 [README]: /README.md
 [TU Delft Thesis Template]: https://d1rkab7tlqy5f1.cloudfront.net/Websections/TU%20Delft%20Huisstijl/report_style.zip
 [XeLaTeX]: https://www.tug.org/xetex/
+[c2c6bcb]: https://github.com/skilkis/tudelft-light-template/commit/c2c6bcb07863894689a3acc286e18907837b485e
