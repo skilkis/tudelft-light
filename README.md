@@ -36,12 +36,13 @@ The `\makecover` macro is also highly customizable:
     image xshift=0,
     image yshift=0,
     image file=tudelft-light/images/background_light.pdf
+    title fontsize=72pt,
 ]
 ```
 
 ### Inner Title Page
 
-A inner title page contains further metadata about the report/project such as
+An inner title page contains further metadata about the report/project such as
 the course code, author(s), supervisor(s), and an optional short abstract.
 This metadata is also automatically added to the metadata of the compiled PDF.
 
