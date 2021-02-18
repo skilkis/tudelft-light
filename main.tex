@@ -1,4 +1,4 @@
-\documentclass[11pt,a4paper,reqno,fancyheader]{tudelft-light/report}
+\documentclass[11pt,a4paper,reqno,fancyheader]{tudelft-light/tud-report}
 
 \title[TU Delft Light]{TU Delft Light}
 \subtitle{An Easy to Use \LaTeX\ Template}
@@ -49,7 +49,7 @@
 \pagenumbering{arabic}
 
     %Chapters:
-    \import{examples/}{latex_elements}
+    \include{examples/latex_elements}
     %ADD CHAPTERS HERE
 
     %References:
@@ -64,7 +64,7 @@
 
     %Appendices:
     \begin{appendices}
-        \import{examples/}{listing}
+        \include{examples/listing}
     \end{appendices}
 \endgroup
 \end{document}
