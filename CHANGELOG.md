@@ -5,6 +5,25 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog], and this project adheres to
 [Semantic Versioning].
 
+## [2.3.0] - 2021-02-18
+
+### Added
+
+- Ability to pass optional value argument to `\nomunit` (Issue #31)
+
+### Fixed
+
+- Failing compilation on TeXLive 2020 (Issue #34)
+
+### Changed
+
+- `\documentclass` to use `tudelft-light/tud-report` instead of
+  `tudelft-light/report` (Issue #34)
+- Use of `\import` to `\include` for adding report structure support in VS Code
+  LaTeX Workshop and support the `\includeonly` macro (Issue #29)
+- Bumped version of `tudelft-light-template` to
+  [87c1708](https://github.com/skilkis/tudelft-light-template/commit/87c1708)
+
 ## [2.2.0] - 2020-12-01
 
 ### Added
