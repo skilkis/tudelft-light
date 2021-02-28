@@ -5,6 +5,13 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog], and this project adheres to
 [Semantic Versioning].
 
+## [Unreleased]
+
+### Added
+
+- Ability to generate a formatted bibliography that appears directly
+  in the Table of Contents with the `\printbibliography` command (Issue #13)
+
 ## [2.3.0] - 2021-02-18
 
 ### Added
