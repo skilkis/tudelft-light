@@ -53,14 +53,8 @@
     %ADD CHAPTERS HERE
 
     %References:
-    \begingroup % Creates Separate Group from the Report
-    \raggedright % Removes Justification
     %\nocite{*} % Disables biblatex from checking if all references are cited
-    \cleardoublepage
-    \phantomsection
-    \addcontentsline{toc}{chapter}{\BibliographyName}
-    \printbibliography[title={\BibliographyName}] % Renames Bibliography
-    \endgroup
+    \printbibliography[title=References,heading=bibintoc] % Renames Bibliography
 
     %Appendices:
     \begin{appendices}
