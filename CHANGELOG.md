@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog], and this project adheres to
 
 - Ability to generate a formatted bibliography that appears directly
   in the Table of Contents with the `\printbibliography` command (Issue #13)
+- Asymmetric margins when using the `twoside` option (Issue #25)
 
 ### Changed
 
