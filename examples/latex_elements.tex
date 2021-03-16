@@ -167,4 +167,33 @@ close attention to the lower-case call to \texttt{\textbackslash si}.
     \si{\kilogram}
 \end{verbatim}
 
+\section{Research Questions}
+Research questions can be formatted using the \texttt{questions} environment
+as follows:
+
+\begin{verbatim}
+    \begin{questions}
+        \item \label{rq:meaning} What is the meaning of life?
+        \begin{questions}
+            \item What is the answer to the Ultimate Question of Life, the 
+            Universe, and Everything?
+        \end{questions}
+    \end{questions}
+\end{verbatim}
+
+This produces the following output:
+
+\begin{questions}
+    \item \label{rq:meaning} What is the meaning of life?
+    \begin{questions}
+        \item What is the answer to the Ultimate Question of Life, the 
+        Universe, and Everything?
+    \end{questions}
+\end{questions}
+
+
+Note that individual questions can be referenced using the declared label, for
+example by using \texttt{\textbackslash cref\{rq:meaning\}}. Doing so would
+render the reference as \cref{rq:meaning}.
+
 % TODO show some examples for code listings
