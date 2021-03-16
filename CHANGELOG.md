@@ -18,6 +18,9 @@ The format is based on [Keep a Changelog], and this project adheres to
 - Hard-coded `\addbibresource` filename to use a glob pattern (Issue #38)
 - Refactored imports to `tud-report.cls` file to make dependencies more
   explicit
+- Hard-coded `\geometry` declaration for `twoside` option in `tud-report.cls`
+  into conditional options that are passed to the `geometry` package (Issue
+  #43)
 
 ### Removed
 
