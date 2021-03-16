@@ -16,6 +16,12 @@ The format is based on [Keep a Changelog], and this project adheres to
 ### Changed
 
 - Hard-coded `\addbibresource` filename to use a glob pattern (Issue #38)
+- Refactored imports to `tud-report.cls` file to make dependencies more
+  explicit
+
+### Removed
+
+- `tud-packages.sty` package
 
 ## [2.3.0] - 2021-02-18
 
