@@ -1,4 +1,4 @@
-\documentclass[11pt,a4paper,reqno,fancyheader]{tudelft-light/tud-report}
+\documentclass[11pt,a4paper,reqno,fancyheader,twoside,openright]{tudelft-light/tud-report}
 
 \title[TU Delft Light]{TU Delft Light}
 \subtitle{An Easy to Use \LaTeX\ Template}
@@ -8,54 +8,24 @@
 \abstract{\input{examples/abstract.tex}}
 
 \begin{document}
+    \makecover[theme=light, fill opacity=0.1]
+    \maketitle
 
-\makecover[theme=light, fill opacity=0.1]
-\maketitle
-
-%Document Part I: Front matter
-\begingroup
-\pagenumbering{roman} % Roman page numbers (I, II, III)
-    
-    %Summary
-    %\input{summary} % Summary
-    %\addcontentsline{toc}{chapter}{Summary} % Adding the Summary to the ToC
-
-    %Table of Contents
-    \renewcommand{\contentsname}{Table of Contents}
-    \begingroup
+    %Document Part I: Front matter
+    \frontmatter
+        %\input{summary} % Summary
         \tableofcontents
-        \pagestyle{empty} % Removes fancy header and footer
-        \thispagestyle{empty} % Ensures that page number can be overwritten
-        \renewcommand{\thepage}{ToC} % Renames 
-        \setcounter{page}{0}
-        \cleardoublepage
-    \endgroup
-    
-    %List of Symbols
-    \printnomenclature[50pt]
+        \printnomenclature[50pt]
+        \listoffigures
+        \listoftables
 
-    %List of Figures
-    \listoffigures
-    %List of Tables
-    \listoftables
-\endgroup
-\cleardoublepage
-
-%Document Part II: Main Matter
-\begingroup
-\pagenumbering{arabic}
-
-    %Chapters:
-    \include{examples/latex_elements}
-    %ADD CHAPTERS HERE
-
-    %References:
-    %\nocite{*} % Disables biblatex from checking if all references are cited
-    \printbibliography[title=References,heading=bibintoc] % Renames Bibliography
-
-    %Appendices:
-    \begin{appendices}
-        \include{examples/listing}
-    \end{appendices}
-\endgroup
+    %Document Part II: Main Matter
+    \mainmatter
+        \include{examples/latex_elements}
+        %ADD CHAPTERS HERE
+        %\nocite{*} % Adds all references even if they are not cited
+        \printbibliography[title=References,heading=bibintoc]
+        \begin{appendices}
+            \include{examples/listing}
+        \end{appendices}
 \end{document}

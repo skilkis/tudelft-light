@@ -7,6 +7,38 @@ The format is based on [Keep a Changelog], and this project adheres to
 
 ## [Unreleased]
 
+This release brings quality of life improvements to the template as well as
+important fixes! One of the most notable is the incoporation of `book.cls`
+style `\frontmatter` and `\backmatter` macros that reduces the `main.tex` file
+down to only a few lines!
+
+```latex
+\documentclass[11pt,a4paper,reqno,fancyheader]{tudelft-light/tud-report}
+
+\title[TU Delft Light]{TU Delft Light}
+\subtitle{An Easy to Use \LaTeX\ Template}
+\author{John Doe | 0000001, Jane Doe | 0000002}  % {Name | Student Number}
+\course{[TU0000] \LaTeX\ 101}
+\supervisor{Dr. Jan Jansen}
+\abstract{\input{examples/abstract.tex}}
+
+\begin{document}
+    \makecover[theme=light, fill opacity=0.1]
+    \maketitle
+    \frontmatter
+        \tableofcontents
+        \printnomenclature[50pt]
+        \listoffigures
+        \listoftables
+    \mainmatter
+        \include{examples/latex_elements}
+        \printbibliography[title=References,heading=bibintoc]
+        \begin{appendices}
+            \include{examples/listing}
+        \end{appendices}
+\end{document}
+```
+
 ### Added
 
 - Ability to generate a formatted bibliography that appears directly
@@ -18,6 +50,10 @@ The format is based on [Keep a Changelog], and this project adheres to
   table of contents using the `tocbibind` package. Refer to `main.tex` to
   see how to prevent duplicates in ToC due to this addition.
 - Automated filtering of citations in captions using the `etoolbox` package
+- `\frontmatter` and `\backmatter` macros to easily change between a roman
+  numbered chapters such as the preface/summary to main content chapters
+  numbered with arabic numerals. This greatly reduces the verbosity of the
+  `main.tex` file.
 
 ### Changed
 
