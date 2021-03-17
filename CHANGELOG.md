@@ -34,6 +34,7 @@ The format is based on [Keep a Changelog], and this project adheres to
 ### Fixed
 
 - References appearing twice in fancy header (Issue #47)
+- Nomenclature not compiling when using `latexmk` (Issue #50)
 
 ## [2.3.0] - 2021-02-18
 
