@@ -28,6 +28,10 @@ The format is based on [Keep a Changelog], and this project adheres to
 
 - `tud-packages.sty` package
 
+### Fixed
+
+- References appearing twice in fancy header (Issue #47)
+
 ## [2.3.0] - 2021-02-18
 
 ### Added
