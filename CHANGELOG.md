@@ -14,6 +14,9 @@ The format is based on [Keep a Changelog], and this project adheres to
 - Asymmetric margins when using the `twoside` option (Issue #25)
 - `questions` environment for declaring research questions (Issue #27).
   Special thanks to @kswannet for providing the suggestion!
+- Automated inclusion of list of figures and list of tables in
+  table of contents using the `tocbibind` package. Refer to `main.tex` to
+  see how to prevent duplicates in ToC due to this addition.
 
 ### Changed
 
