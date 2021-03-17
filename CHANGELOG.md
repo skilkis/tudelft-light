@@ -17,6 +17,7 @@ The format is based on [Keep a Changelog], and this project adheres to
 - Automated inclusion of list of figures and list of tables in
   table of contents using the `tocbibind` package. Refer to `main.tex` to
   see how to prevent duplicates in ToC due to this addition.
+- Automated filtering of citations in captions using the `etoolbox` package
 
 ### Changed
 
