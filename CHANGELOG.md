@@ -7,8 +7,8 @@ The format is based on [Keep a Changelog], and this project adheres to
 
 ## [Unreleased]
 
-This release brings quality of life improvements to the template as well as
-important fixes! One of the most notable is the incoporation of `book.cls`
+Big release, bringing quality of life improvements to the template as well as
+important fixes! One of the most notable is the incorporation of `book.cls`
 style `\frontmatter` and `\backmatter` macros that reduces the `main.tex` file
 down to only a few lines!
 
@@ -74,6 +74,8 @@ down to only a few lines!
 
 - References appearing twice in fancy header (Issue #47)
 - Nomenclature not compiling when using `latexmk` (Issue #50)
+- Incorrect page numbers in ToC, caused by an incompatibility with the
+  `notocite` package (Issue #37)
 
 ## [2.3.0] - 2021-02-18
 
