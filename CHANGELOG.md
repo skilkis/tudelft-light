@@ -63,6 +63,8 @@ down to only a few lines!
 - Hard-coded `\geometry` declaration for `twoside` option in `tud-report.cls`
   into conditional options that are passed to the `geometry` package (Issue
   #43)
+- Cover and title page formatting to produce blank pages if `twoside` option
+  is declared
 
 ### Removed
 
