@@ -68,6 +68,7 @@ down to only a few lines!
   #43)
 - Cover and title page formatting to produce blank pages if `twoside` option
   is declared
+- Listings to be numbered using the chapter number
 
 ### Removed
 
