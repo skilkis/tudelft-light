@@ -5,7 +5,7 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog], and this project adheres to
 [Semantic Versioning].
 
-## [Unreleased]
+## [2.4.0] - 2021-03-21
 
 Big release, bringing quality of life improvements to the template as well as
 important fixes! One of the most notable is the incorporation of `book.cls`
