@@ -74,6 +74,7 @@ down to only a few lines!
 ### Removed
 
 - `tud-packages.sty` package
+- Unused `datatool`, `rotating`, `pdflscape`, `color`, `pdfpages` packages
 
 ### Fixed
 
