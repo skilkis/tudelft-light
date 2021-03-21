@@ -57,6 +57,7 @@ down to only a few lines!
 - Support for ensuring that chapters start on odd-pages in when using the
   `twoside` mode (Issue #48). Blank pages that follow the current
   formatting are added with the text "This page intentionally left blank."
+- Support for typesetting quotes with the `quoting` package
 
 ### Changed
 
