@@ -54,6 +54,9 @@ down to only a few lines!
   numbered chapters such as the preface/summary to main content chapters
   numbered with arabic numerals. This greatly reduces the verbosity of the
   `main.tex` file.
+- Support for ensuring that chapters start on odd-pages in when using the
+  `twoside` mode (Issue #48). Blank pages that follow the current
+  formatting are added with the text "This page intentionally left blank."
 
 ### Changed
 
